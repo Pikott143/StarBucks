@@ -1,6 +1,6 @@
-/* =====================================================
-   LOADING ELEMENTS
-===================================================== */
+/* ==================================================
+   ELEMENTS
+================================================== */
 
 const loadingScreen =
     document.getElementById("loadingScreen");
@@ -8,535 +8,162 @@ const loadingScreen =
 const loadingLogo =
     document.getElementById("loadingLogo");
 
-const loadingLogoWrap =
-    document.querySelector(".loadingLogoWrap");
-
-const dustCanvas =
-    document.getElementById("dustCanvas");
-
-const ctx =
-    dustCanvas.getContext("2d");
-
 const homePage =
     document.getElementById("homePage");
 
+const particles =
+    document.getElementById("particles");
 
+const backgroundVideo =
+    document.getElementById("backgroundVideo");
 
-/* =====================================================
-   DUST SETTINGS
-===================================================== */
 
-let particles = [];
+/* ==================================================
+   LOADING DUST PARTICLES
+================================================== */
 
-let canvasWidth = 0;
-let canvasHeight = 0;
+function createDust() {
 
-let logoPoints = [];
+    const particleCount = 180;
 
-let animationStart = null;
+    for (let i = 0; i < particleCount; i++) {
 
-const PARTICLE_COUNT = 900;
+        const particle =
+            document.createElement("span");
 
+        particle.classList.add("particle");
 
 
-/* =====================================================
-   CANVAS SIZE
-===================================================== */
+        /* Random size */
 
-function resizeCanvas() {
+        const size =
+            Math.random();
 
-    const dpr =
-        window.devicePixelRatio || 1;
+        if (size < .25) {
 
-    canvasWidth =
-        window.innerWidth;
+            particle.classList.add("small");
 
-    canvasHeight =
-        window.innerHeight;
+        } else if (size > .80) {
 
-
-    dustCanvas.width =
-        canvasWidth * dpr;
-
-    dustCanvas.height =
-        canvasHeight * dpr;
-
-
-    dustCanvas.style.width =
-        canvasWidth + "px";
-
-    dustCanvas.style.height =
-        canvasHeight + "px";
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-}
-
-
-resizeCanvas();
-
-
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-
-
-/* =====================================================
-   GET LOGO SHAPE
-===================================================== */
-
-function createLogoPoints() {
-
-    const image =
-        new Image();
-
-    image.src =
-        loadingLogo.src;
-
-
-    image.onload = () => {
-
-        const size = 180;
-
-        const offscreen =
-            document.createElement(
-                "canvas"
-            );
-
-        offscreen.width = size;
-        offscreen.height = size;
-
-        const offCtx =
-            offscreen.getContext(
-                "2d"
-            );
-
-
-        offCtx.clearRect(
-            0,
-            0,
-            size,
-            size
-        );
-
-
-        offCtx.drawImage(
-            image,
-            0,
-            0,
-            size,
-            size
-        );
-
-
-        const imageData =
-            offCtx.getImageData(
-                0,
-                0,
-                size,
-                size
-            );
-
-
-        const data =
-            imageData.data;
-
-
-        logoPoints = [];
-
-
-        for (
-            let y = 0;
-            y < size;
-            y += 3
-        ) {
-
-            for (
-                let x = 0;
-                x < size;
-                x += 3
-            ) {
-
-                const index =
-                    (y * size + x) * 4;
-
-
-                const alpha =
-                    data[index + 3];
-
-
-                /*
-                    Only use visible
-                    parts of the logo.
-                */
-
-                if (alpha > 80) {
-
-                    const px =
-                        canvasWidth / 2
-                        - size / 2
-                        + x;
-
-                    const py =
-                        canvasHeight / 2
-                        - size / 2
-                        + y;
-
-
-                    logoPoints.push({
-                        x: px,
-                        y: py
-                    });
-                }
-            }
-        }
-
-
-        createParticles();
-
-        startDustAnimation();
-    };
-}
-
-
-
-/* =====================================================
-   CREATE PARTICLES
-===================================================== */
-
-function createParticles() {
-
-    particles = [];
-
-
-    for (
-        let i = 0;
-        i < PARTICLE_COUNT;
-        i++
-    ) {
-
-        let target;
-
-
-        if (logoPoints.length > 0) {
-
-            target =
-                logoPoints[
-                    Math.floor(
-                        Math.random()
-                        * logoPoints.length
-                    )
-                ];
-
-        } else {
-
-            target = {
-                x: canvasWidth / 2,
-                y: canvasHeight / 2
-            };
+            particle.classList.add("large");
         }
 
 
         /*
-            Start far away from logo.
+            Random starting position
+            around the whole screen
         */
 
-        const angle =
-            Math.random()
-            * Math.PI
-            * 2;
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+        particle.style.top =
+            Math.random() * 100 + "%";
 
 
-        const distance =
-            180
-            + Math.random() * 500;
-
+        /*
+            Random movement
+            creates dust-like motion
+        */
 
         const startX =
-            target.x
-            + Math.cos(angle)
-            * distance;
-
+            (Math.random() - .5) * 400;
 
         const startY =
-            target.y
-            + Math.sin(angle)
-            * distance;
+            (Math.random() - .5) * 400;
 
+        const midX =
+            (Math.random() - .5) * 160;
 
-        particles.push({
+        const midY =
+            (Math.random() - .5) * 160;
 
-            x: startX,
+        const endX =
+            (Math.random() - .5) * 70;
 
-            y: startY,
+        const endY =
+            (Math.random() - .5) * 70;
 
-            targetX: target.x,
+        const finalX =
+            (Math.random() - .5) * 300;
 
-            targetY: target.y,
+        const finalY =
+            (Math.random() - .5) * 300;
 
-            size:
-                Math.random()
-                * 2.2
-                + .5,
 
-            delay:
-                Math.random()
-                * 900,
-
-            duration:
-                1600
-                + Math.random()
-                * 1000,
-
-            alpha:
-                .3
-                + Math.random()
-                * .7
-
-        });
-    }
-}
-
-
-
-/* =====================================================
-   DUST ANIMATION
-===================================================== */
-
-function startDustAnimation() {
-
-    animationStart =
-        performance.now();
-
-
-    requestAnimationFrame(
-        animateDust
-    );
-}
-
-
-function animateDust(timestamp) {
-
-    if (!animationStart) {
-
-        animationStart =
-            timestamp;
-    }
-
-
-    const elapsed =
-        timestamp
-        - animationStart;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvasWidth,
-        canvasHeight
-    );
-
-
-    particles.forEach(
-        particle => {
-
-            const localTime =
-                elapsed
-                - particle.delay;
-
-
-            let progress =
-                localTime
-                / particle.duration;
-
-
-            progress =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        progress
-                    )
-                );
-
-
-            /*
-                Smooth easing
-            */
-
-            const eased =
-                1
-                - Math.pow(
-                    1 - progress,
-                    3
-                );
-
-
-            particle.x =
-                particle.x
-                + (
-                    particle.targetX
-                    - particle.x
-                )
-                * eased
-                * .08;
-
-
-            particle.y =
-                particle.y
-                + (
-                    particle.targetY
-                    - particle.y
-                )
-                * eased
-                * .08;
-
-
-            /*
-                Fade in particles
-            */
-
-            let alpha =
-                particle.alpha;
-
-
-            if (progress < .15) {
-
-                alpha *=
-                    progress / .15;
-            }
-
-
-            if (progress > .88) {
-
-                alpha *=
-                    (1 - progress)
-                    / .12;
-            }
-
-
-            /*
-                Draw particle
-            */
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-                particle.x,
-                particle.y,
-                particle.size,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fillStyle =
-                `rgba(
-                    255,
-                    255,
-                    255,
-                    ${alpha}
-                )`;
-
-
-            ctx.shadowBlur = 6;
-
-            ctx.shadowColor =
-                "rgba(255,255,255,.5)";
-
-
-            ctx.fill();
-        }
-    );
-
-
-    ctx.shadowBlur = 0;
-
-
-    /*
-        Continue animation
-    */
-
-    if (elapsed < 3200) {
-
-        requestAnimationFrame(
-            animateDust
+        particle.style.setProperty(
+            "--startX",
+            `${startX}px`
         );
-    }
-}
 
+        particle.style.setProperty(
+            "--startY",
+            `${startY}px`
+        );
 
+        particle.style.setProperty(
+            "--midX",
+            `${midX}px`
+        );
 
-/* =====================================================
-   START LOADING
-===================================================== */
+        particle.style.setProperty(
+            "--midY",
+            `${midY}px`
+        );
 
-window.addEventListener(
-    "load",
-    () => {
+        particle.style.setProperty(
+            "--endX",
+            `${endX}px`
+        );
 
-        /*
-            Prepare dust logo
-        */
+        particle.style.setProperty(
+            "--endY",
+            `${endY}px`
+        );
 
-        createLogoPoints();
+        particle.style.setProperty(
+            "--finalX",
+            `${finalX}px`
+        );
 
-
-        /*
-            Show actual logo
-            after particles assemble.
-        */
-
-        setTimeout(
-            () => {
-
-                loadingLogoWrap.classList.add(
-                    "show"
-                );
-
-            },
-            2600
+        particle.style.setProperty(
+            "--finalY",
+            `${finalY}px`
         );
 
 
         /*
-            Hide loading screen
+            Random animation speed
         */
 
-        setTimeout(
-            () => {
+        const duration =
+            2.5 + Math.random() * 2;
 
-                loadingScreen.classList.add(
-                    "hide"
-                );
-
-
-                homePage.classList.add(
-                    "show"
-                );
-
-            },
-            4000
+        particle.style.setProperty(
+            "--duration",
+            `${duration}s`
         );
 
+
+        /*
+            Random delay
+        */
+
+        particle.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+
+        particles.appendChild(particle);
     }
-);
+}
 
 
+createDust();
 
-/* =====================================================
-   MULTIPLE BACKGROUND VIDEOS
-===================================================== */
+
+/* ==================================================
+   FOUR BACKGROUND VIDEOS
+================================================== */
 
 const videos = [
 
@@ -551,261 +178,119 @@ const videos = [
 ];
 
 
-const videoOne =
-    document.getElementById(
-        "backgroundVideo1"
+/* ==================================================
+   SELECT VIDEO FOR THIS REFRESH
+================================================== */
+
+/*
+    localStorage remembers which video
+    was used last time.
+
+    Example:
+
+    Refresh 1 → video1
+    Refresh 2 → video2
+    Refresh 3 → video3
+    Refresh 4 → video4
+    Refresh 5 → video1
+*/
+
+let lastVideo =
+    Number(
+        localStorage.getItem(
+            "coffeeLastVideo"
+        )
     );
 
 
-const videoTwo =
-    document.getElementById(
-        "backgroundVideo2"
-    );
+/*
+    If there is no previous video,
+    start at video 1.
+*/
 
-
-let currentVideo = 0;
-
-let activeVideo =
-    videoOne;
-
-let nextVideo =
-    videoTwo;
-
-let isChanging =
-    false;
-
-
-
-/* =====================================================
-   LOAD VIDEO
-===================================================== */
-
-function loadVideo(
-    videoElement,
-    index
+if (
+    Number.isNaN(lastVideo) ||
+    lastVideo < 0 ||
+    lastVideo >= videos.length
 ) {
 
-    videoElement.src =
-        videos[index];
-
-    videoElement.load();
-
-    videoElement.currentTime = 0;
-
-    videoElement.play()
-        .catch(() => {});
+    lastVideo = -1;
 }
 
 
+/* Get next video */
 
-/* =====================================================
-   FIRST VIDEO
-===================================================== */
+const currentVideo =
+    (lastVideo + 1) % videos.length;
 
-loadVideo(
-    videoOne,
-    0
+
+/* Save it */
+
+localStorage.setItem(
+    "coffeeLastVideo",
+    currentVideo
 );
 
 
-videoOne.classList.add(
-    "active"
-);
+/* ==================================================
+   LOAD SELECTED VIDEO
+================================================== */
+
+backgroundVideo.src =
+    videos[currentVideo];
+
+backgroundVideo.load();
 
 
+/* ==================================================
+   PLAY VIDEO
+================================================== */
 
-/* =====================================================
-   CHANGE VIDEO
-===================================================== */
-
-function changeVideo() {
-
-    if (isChanging) {
-
-        return;
-    }
-
-
-    isChanging = true;
-
-
-    /*
-        Move to next video
-    */
-
-    currentVideo++;
-
-
-    if (
-        currentVideo
-        >= videos.length
-    ) {
-
-        currentVideo = 0;
-    }
-
-
-    /*
-        Load next video
-    */
-
-    loadVideo(
-        nextVideo,
-        currentVideo
-    );
-
-
-    /*
-        Wait until loaded
-    */
-
-    nextVideo.addEventListener(
-        "canplay",
-        switchVideos,
-        {
-            once: true
-        }
-    );
-}
-
-
-
-/* =====================================================
-   SWITCH VIDEOS
-===================================================== */
-
-function switchVideos() {
-
-    /*
-        Fade in next
-    */
-
-    nextVideo.classList.add(
-        "active"
-    );
-
-
-    /*
-        Fade out old
-    */
-
-    activeVideo.classList.remove(
-        "active"
-    );
-
-
-    /*
-        Swap references
-    */
-
-    const temporary =
-        activeVideo;
-
-
-    activeVideo =
-        nextVideo;
-
-
-    nextVideo =
-        temporary;
-
-
-    isChanging = false;
-}
-
-
-
-/* =====================================================
-   VIDEO ENDED
-===================================================== */
-
-videoOne.addEventListener(
-    "ended",
-    changeVideo
-);
-
-
-videoTwo.addEventListener(
-    "ended",
-    changeVideo
-);
-
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
-
-
-const mobileMenu =
-    document.getElementById(
-        "mobileMenu"
-    );
-
-
-const closeMenu =
-    document.getElementById(
-        "closeMenu"
-    );
-
-
-
-/* OPEN */
-
-menuButton.addEventListener(
-    "click",
+backgroundVideo.addEventListener(
+    "canplay",
     () => {
 
-        mobileMenu.classList.add(
-            "open"
-        );
+        backgroundVideo
+            .play()
+            .catch(() => {});
 
-    }
+    },
+    { once: true }
 );
 
 
+/* ==================================================
+   PAGE LOADING
+================================================== */
 
-/* CLOSE */
-
-closeMenu.addEventListener(
-    "click",
+window.addEventListener(
+    "load",
     () => {
 
-        mobileMenu.classList.remove(
-            "open"
-        );
+        /*
+            Give particles time
+            to start forming.
+        */
 
-    }
-);
+        setTimeout(() => {
 
+            loadingLogo.classList.add("show");
 
-
-/* CLOSE AFTER LINK CLICK */
-
-const mobileLinks =
-    mobileMenu.querySelectorAll(
-        "a"
-    );
+        }, 900);
 
 
-mobileLinks.forEach(
-    link => {
+        /*
+            After the dust/logo animation,
+            go to homepage.
+        */
 
-        link.addEventListener(
-            "click",
-            () => {
+        setTimeout(() => {
 
-                mobileMenu.classList.remove(
-                    "open"
-                );
+            loadingScreen.classList.add("hide");
 
-            }
-        );
+            homePage.classList.add("show");
+
+        }, 3900);
 
     }
 );

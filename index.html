@@ -3,246 +3,155 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Coffee Experience</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-<!-- =====================================================
-     LOADING SCREEN
-===================================================== -->
-
-<section id="loadingScreen">
-
-    <!-- Canvas where the dust particles are created -->
-    <canvas id="dustCanvas"></canvas>
-
-    <!-- Real logo shown after particles form -->
-    <div class="loadingLogoWrap">
-
-        <img
-            id="loadingLogo"
-            src="images/1.png"
-            alt="Logo"
-        >
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     HOME PAGE
-===================================================== -->
-
-<main id="homePage">
-
-
-    <!-- =================================================
-         BACKGROUND VIDEOS
+    <!-- ==================================================
+         LOADING SCREEN
     ================================================== -->
 
-    <div class="videoBackground">
+    <div id="loadingScreen">
 
-        <video
-            id="backgroundVideo1"
-            class="backgroundVideo active"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
+        <!-- Dust particles -->
+        <div id="particles"></div>
 
-
-        <video
-            id="backgroundVideo2"
-            class="backgroundVideo"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
-
-    </div>
-
-
-    <!-- Dark overlay -->
-
-    <div class="videoOverlay"></div>
-
-
-
-    <!-- =================================================
-         NAVBAR
-    ================================================== -->
-
-    <header class="navbar">
-
-
-        <!-- LOGO -->
-
-        <a
-            href="#"
-            class="navLogo"
-        >
+        <!-- Logo -->
+        <div class="loadingLogoWrapper">
 
             <img
                 src="images/1.png"
-                alt="Logo"
+                alt="Coffee Logo"
+                id="loadingLogo"
             >
-
-        </a>
-
-
-
-        <!-- DESKTOP NAV -->
-
-        <nav class="navLinks">
-
-            <a href="#">MENU</a>
-
-            <a href="#">MERCHANDISE</a>
-
-            <a href="#">REWARDS</a>
-
-
-            <a
-                href="#"
-                class="signIn"
-            >
-                Sign in
-            </a>
-
-
-            <a
-                href="#"
-                class="joinNow"
-            >
-                Join Now
-            </a>
-
-        </nav>
-
-
-
-        <!-- MOBILE MENU BUTTON -->
-
-        <button
-            class="menuButton"
-            id="menuButton"
-            aria-label="Open menu"
-        >
-            ☰
-        </button>
-
-    </header>
-
-
-
-    <!-- =================================================
-         MOBILE MENU
-    ================================================== -->
-
-    <aside
-        class="mobileMenu"
-        id="mobileMenu"
-    >
-
-        <button
-            class="closeMenu"
-            id="closeMenu"
-            aria-label="Close menu"
-        >
-            ×
-        </button>
-
-
-        <a href="#">MENU</a>
-
-        <a href="#">MERCHANDISE</a>
-
-        <a href="#">REWARDS</a>
-
-        <a href="#">Sign in</a>
-
-        <a
-            href="#"
-            class="mobileJoin"
-        >
-            Join Now
-        </a>
-
-    </aside>
-
-
-
-    <!-- =================================================
-         HERO
-    ================================================== -->
-
-    <section class="hero">
-
-        <div class="heroContent">
-
-
-            <p class="smallText">
-                WELCOME TO YOUR COFFEE EXPERIENCE
-            </p>
-
-
-            <h1>
-                GOOD COFFEE.<br>
-                GOOD<br>
-                MOMENTS.
-            </h1>
-
-
-            <p class="heroDescription">
-                Discover handcrafted coffee, delicious
-                moments, and a place made for everyone.
-            </p>
-
-
-            <div class="heroButtons">
-
-                <a
-                    href="#"
-                    class="primaryButton"
-                >
-                    ORDER NOW
-                </a>
-
-
-                <a
-                    href="#"
-                    class="secondaryButton"
-                >
-                    EXPLORE MENU
-                </a>
-
-            </div>
 
         </div>
 
-    </section>
+    </div>
 
 
-</main>
+    <!-- ==================================================
+         HOMEPAGE
+    ================================================== -->
+
+    <main id="homePage">
+
+        <!-- Background Video -->
+
+        <video
+            id="backgroundVideo"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+        ></video>
 
 
+        <!-- Dark overlay -->
 
-<script src="script.js"></script>
+        <div class="videoOverlay"></div>
+
+
+        <!-- ==================================================
+             NAVBAR
+        ================================================== -->
+
+        <header class="navbar">
+
+            <!-- Logo -->
+
+            <a href="#" class="navLogo">
+
+                <img
+                    src="images/1.png"
+                    alt="Coffee Logo"
+                >
+
+            </a>
+
+
+            <!-- Navigation -->
+
+            <nav class="navLinks">
+
+                <a href="#">MENU</a>
+
+                <a href="#">MERCHANDISE</a>
+
+                <a href="#">REWARDS</a>
+
+                <a href="#" class="signIn">
+                    Sign in
+                </a>
+
+                <a href="#" class="joinNow">
+                    Join Now
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <!-- ==================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="heroContent">
+
+                <p class="smallText">
+                    WELCOME TO YOUR COFFEE EXPERIENCE
+                </p>
+
+
+                <h1>
+                    GOOD COFFEE.<br>
+                    GOOD MOMENTS.
+                </h1>
+
+
+                <p class="heroDescription">
+                    Discover handcrafted coffee,
+                    delicious moments, and a place
+                    made for everyone.
+                </p>
+
+
+                <div class="heroButtons">
+
+                    <a
+                        href="#"
+                        class="primaryButton"
+                    >
+                        ORDER NOW
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="secondaryButton"
+                    >
+                        EXPLORE MENU
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
