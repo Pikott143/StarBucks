@@ -1,6 +1,6 @@
-/* ==================================================
+/* =========================================================
    RESET
-================================================== */
+========================================================= */
 
 * {
     margin: 0;
@@ -8,24 +8,24 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
     width: 100%;
     height: 100%;
-
     overflow: hidden;
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
+
+    background: #123424;
 }
 
 
-/* ==================================================
+/* =========================================================
    LOADING SCREEN
-================================================== */
+========================================================= */
 
 #loadingScreen {
 
@@ -36,12 +36,18 @@ body {
     width: 100%;
     height: 100vh;
 
-    background: #123424;
+    background:
+        radial-gradient(
+            circle at center,
+            #194a34 0%,
+            #123424 45%,
+            #0b2118 100%
+        );
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
@@ -49,29 +55,77 @@ body {
 
     opacity: 1;
 
-    visibility: visible;
+    transform: scale(1);
 
     transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
+        opacity 1.4s ease,
+        transform 1.4s cubic-bezier(.16,.84,.26,1);
 }
 
 
-/* Loading screen disappears */
+/* Loading disappears */
 
 #loadingScreen.hide {
 
     opacity: 0;
 
-    visibility: hidden;
+    transform: scale(1.05);
 
     pointer-events: none;
 }
 
 
-/* ==================================================
+/* =========================================================
+   LOADING GLOW
+========================================================= */
+
+.loadingGlow {
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.10),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    animation:
+        glowPulse 3s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes glowPulse {
+
+    0% {
+        transform: scale(.85);
+        opacity: .35;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scale(.85);
+        opacity: .35;
+    }
+}
+
+
+/* =========================================================
    PARTICLES
-================================================== */
+========================================================= */
 
 #particles {
 
@@ -85,10 +139,10 @@ body {
     pointer-events: none;
 
     overflow: hidden;
+
+    z-index: 2;
 }
 
-
-/* Individual dust */
 
 .particle {
 
@@ -99,42 +153,25 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, .9);
+    background: rgba(255,255,255,.9);
 
     box-shadow:
-        0 0 6px rgba(255, 255, 255, .45);
+        0 0 8px rgba(255,255,255,.7);
 
     opacity: 0;
 
     animation:
-        dustForm
+        dustAssemble
         var(--duration)
-        cubic-bezier(.16, .84, .26, 1)
+        cubic-bezier(.16,.84,.26,1)
         forwards;
+
+    animation-delay:
+        var(--delay);
 }
 
 
-/* Different particle sizes */
-
-.particle.small {
-
-    width: 2px;
-    height: 2px;
-}
-
-
-.particle.large {
-
-    width: 4px;
-    height: 4px;
-}
-
-
-/* ==================================================
-   DUST ANIMATION
-================================================== */
-
-@keyframes dustForm {
+@keyframes dustAssemble {
 
     0% {
 
@@ -145,59 +182,33 @@ body {
                 var(--startX),
                 var(--startY)
             )
-            scale(.2);
+            scale(.15);
     }
-
 
     20% {
 
-        opacity: .8;
-    }
-
-
-    55% {
-
-        opacity: 1;
-
-        transform:
-            translate(
-                var(--midX),
-                var(--midY)
-            )
-            scale(1);
-    }
-
-
-    85% {
-
         opacity: .9;
-
-        transform:
-            translate(
-                var(--endX),
-                var(--endY)
-            )
-            scale(.8);
     }
 
+    65% {
+
+        opacity: .75;
+    }
 
     100% {
 
         opacity: 0;
 
         transform:
-            translate(
-                var(--finalX),
-                var(--finalY)
-            )
-            scale(.1);
+            translate(0,0)
+            scale(.05);
     }
 }
 
 
-/* ==================================================
-   LOADING LOGO
-================================================== */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .loadingLogoWrapper {
 
@@ -206,11 +217,18 @@ body {
     left: 50%;
     top: 50%;
 
-    width: 360px;
-    height: 360px;
+    width: 190px;
+    height: 190px;
 
     transform:
-        translate(-50%, -50%);
+        translate(-50%, -58%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
 }
 
 
@@ -224,44 +242,141 @@ body {
     opacity: 0;
 
     transform:
-        scale(.72);
+        scale(.35)
+        rotate(-8deg);
 
     filter:
-        blur(7px)
+        blur(8px)
         drop-shadow(
-            0 0 15px
-            rgba(255,255,255,.1)
+            0 0 25px
+            rgba(255,255,255,.15)
         );
 
     transition:
-        opacity 1.3s ease,
-        transform 1.4s
-        cubic-bezier(.16,.84,.26,1),
-        filter 1.3s ease;
+        opacity 1.5s ease,
+        transform 1.6s cubic-bezier(.16,.84,.26,1),
+        filter 1.6s ease;
 }
 
 
-/* Logo becomes clear */
+/* Logo appears */
 
 #loadingLogo.show {
 
     opacity: 1;
 
     transform:
-        scale(1);
+        scale(1)
+        rotate(0deg);
 
     filter:
         blur(0)
         drop-shadow(
-            0 0 30px
-            rgba(255,255,255,.18)
+            0 0 35px
+            rgba(255,255,255,.22)
         );
 }
 
 
-/* ==================================================
+/* =========================================================
+   BRAND NAME
+========================================================= */
+
+.loadingBrand {
+
+    position: absolute;
+
+    left: 50%;
+    top: calc(50% + 125px);
+
+    transform:
+        translateX(-50%)
+        translateY(15px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 6;
+
+    color: white;
+
+    opacity: 0;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.loadingBrand.show {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+.loadingBrand span {
+
+    font-size: 23px;
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    text-transform: none;
+}
+
+
+.loadingBrand small {
+
+    margin-top: 8px;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    opacity: .65;
+}
+
+
+.loadingLine {
+
+    width: 45px;
+    height: 1px;
+
+    margin-top: 9px;
+
+    background: rgba(255,255,255,.65);
+
+    transform:
+        scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform 1s ease .3s;
+}
+
+
+.loadingBrand.show .loadingLine {
+
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
    HOMEPAGE
-================================================== */
+========================================================= */
 
 #homePage {
 
@@ -274,19 +389,21 @@ body {
 
     overflow: hidden;
 
-    color: white;
+    background: #123424;
 
     opacity: 0;
 
-    transform:
-        scale(1.03);
+    transform: scale(1.04);
 
     pointer-events: none;
 
     transition:
-        opacity 1.4s ease,
-        transform 1.5s
-        cubic-bezier(.16,.84,.26,1);
+        opacity 1.5s ease,
+        transform 1.5s cubic-bezier(.16,.84,.26,1);
+
+    color: white;
+
+    z-index: 1;
 }
 
 
@@ -294,18 +411,17 @@ body {
 
     opacity: 1;
 
-    transform:
-        scale(1);
+    transform: scale(1);
 
     pointer-events: auto;
 }
 
 
-/* ==================================================
-   BACKGROUND VIDEO
-================================================== */
+/* =========================================================
+   BACKGROUND VIDEOS
+========================================================= */
 
-#backgroundVideo {
+.backgroundVideo {
 
     position: absolute;
 
@@ -318,13 +434,26 @@ body {
 
     background: #123424;
 
+    opacity: 0;
+
     z-index: -3;
+
+    transition:
+        opacity 1.4s ease;
+
+    pointer-events: none;
 }
 
 
-/* ==================================================
+.backgroundVideo.active {
+
+    opacity: 1;
+}
+
+
+/* =========================================================
    VIDEO OVERLAY
-================================================== */
+========================================================= */
 
 .videoOverlay {
 
@@ -338,18 +467,20 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,.62),
-            rgba(0,0,0,.28),
-            rgba(0,0,0,.10)
+            rgba(0,0,0,.68) 0%,
+            rgba(0,0,0,.42) 40%,
+            rgba(0,0,0,.15) 100%
         );
 
     z-index: -2;
+
+    pointer-events: none;
 }
 
 
-/* ==================================================
+/* =========================================================
    NAVBAR
-================================================== */
+========================================================= */
 
 .navbar {
 
@@ -360,7 +491,7 @@ body {
 
     width: 100%;
 
-    height: 100px;
+    height: 105px;
 
     padding:
         0 6%;
@@ -371,23 +502,25 @@ body {
 
     justify-content: space-between;
 
-    z-index: 20;
+    z-index: 50;
 }
 
 
-/* ==================================================
+/* =========================================================
    NAV LOGO
-================================================== */
+========================================================= */
 
 .navLogo {
 
-    width: 62px;
-    height: 62px;
+    width: 65px;
+    height: 65px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    text-decoration: none;
 }
 
 
@@ -400,15 +533,24 @@ body {
 
     filter:
         drop-shadow(
-            0 0 10px
+            0 4px 12px
             rgba(0,0,0,.35)
         );
+
+    transition:
+        transform .3s ease;
 }
 
 
-/* ==================================================
+.navLogo:hover img {
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
    NAV LINKS
-================================================== */
+========================================================= */
 
 .navLinks {
 
@@ -416,7 +558,7 @@ body {
 
     align-items: center;
 
-    gap: 32px;
+    gap: 35px;
 }
 
 
@@ -428,11 +570,11 @@ body {
 
     text-decoration: none;
 
-    font-size: 12px;
+    font-size: 14px;
 
-    font-weight: 600;
+    font-weight: 700;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 
     transition:
         opacity .3s ease,
@@ -447,26 +589,15 @@ body {
     position: absolute;
 
     left: 0;
-
-    bottom: -7px;
+    bottom: -8px;
 
     width: 0;
-
-    height: 1px;
+    height: 2px;
 
     background: white;
 
     transition:
         width .3s ease;
-}
-
-
-.navLinks a:not(.signIn):not(.joinNow):hover {
-
-    opacity: .75;
-
-    transform:
-        translateY(-2px);
 }
 
 
@@ -476,70 +607,89 @@ body {
 }
 
 
-/* ==================================================
-   SIGN IN
-================================================== */
+.navLinks a:hover {
 
-.signIn {
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    height: 37px;
-
-    min-width: 105px;
-
-    padding:
-        0 20px;
-
-    border:
-        1px solid
-        rgba(0,0,0,.55);
-
-    border-radius: 999px;
-
-    background:
-        rgba(255,255,255,.10);
-
-    color: #000 !important;
-
-    backdrop-filter:
-        blur(8px);
-
-    transition:
-        .3s ease;
-}
-
-
-.signIn:hover {
-
-    background:
-        rgba(255,255,255,.25);
+    opacity: .8;
 
     transform:
         translateY(-2px);
 }
 
 
-/* ==================================================
-   JOIN NOW
-================================================== */
+/* =========================================================
+   SIGN IN
+========================================================= */
 
-.joinNow {
+.navLinks .signIn {
 
     display: inline-flex;
 
     align-items: center;
     justify-content: center;
 
-    height: 37px;
+    min-width: 125px;
 
-    min-width: 105px;
+    height: 42px;
 
     padding:
-        0 20px;
+        0 24px;
+
+    margin-left: 10px;
+
+    border:
+        1px solid
+        rgba(0,0,0,.5);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    color: #000 !important;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        background .3s ease,
+        transform .3s ease;
+}
+
+
+.navLinks .signIn:hover {
+
+    background:
+        rgba(255,255,255,.28);
+
+    color: #000 !important;
+
+    opacity: 1;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   JOIN NOW
+========================================================= */
+
+.navLinks .joinNow {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 125px;
+
+    height: 42px;
+
+    padding:
+        0 24px;
 
     border:
         1px solid #000;
@@ -551,38 +701,47 @@ body {
     color: white !important;
 
     transition:
-        .3s ease;
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
 
-.joinNow:hover {
+.navLinks .joinNow:hover {
 
-    background: #171717;
+    background: #111;
+
+    opacity: 1;
 
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 7px 20px
+        0 8px 25px
         rgba(0,0,0,.25);
 }
 
 
-/* ==================================================
+/* =========================================================
    HERO
-================================================== */
+========================================================= */
 
 .hero {
 
     position: absolute;
 
-    left: 5%;
+    left: 6%;
 
-    bottom: 9%;
+    top: 65%;
 
-    width: 390px;
+    width: 430px;
 
-    z-index: 10;
+    transform:
+        translateY(-50%);
+
+    z-index: 20;
+
+    pointer-events: none;
 }
 
 
@@ -590,14 +749,16 @@ body {
 
     width: 100%;
 
+    max-width: 400px;
+
     opacity: 0;
 
     transform:
         translateY(25px);
 
     transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity 1.2s ease,
+        transform 1.2s ease;
 }
 
 
@@ -609,23 +770,26 @@ body {
         translateY(0);
 
     transition-delay:
-        .45s;
+        .35s;
 }
 
 
-/* ==================================================
+/* =========================================================
    SMALL TEXT
-================================================== */
+========================================================= */
 
 .smallText {
 
-    margin-bottom: 11px;
+    margin:
+        0 0 14px 0;
 
-    font-size: 8px;
+    font-size: 9px;
+
+    line-height: 1;
 
     font-weight: 700;
 
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 
     color: white;
 
@@ -633,96 +797,103 @@ body {
 }
 
 
-/* ==================================================
-   HERO TITLE
-================================================== */
+/* =========================================================
+   MAIN TITLE
+========================================================= */
 
 .hero h1 {
 
+    width: 370px;
+
     margin: 0;
 
-    width: 350px;
+    padding: 0;
 
-    font-size: 48px;
+    font-size: 58px;
 
     line-height: .88;
 
-    letter-spacing: -2.5px;
+    letter-spacing: -3px;
 
     font-weight: 800;
 
     color: white;
 
     text-shadow:
-        0 3px 18px
+        0 4px 18px
         rgba(0,0,0,.35);
 }
 
 
-/* ==================================================
+/* =========================================================
    DESCRIPTION
-================================================== */
+========================================================= */
 
 .heroDescription {
 
-    margin-top: 16px;
+    width: 340px;
 
-    width: 275px;
+    margin:
+        20px 0 0 0;
 
-    font-size: 8px;
+    font-size: 11px;
 
-    line-height: 1.6;
+    line-height: 1.55;
 
     color: white;
 
-    opacity: .85;
+    opacity: .86;
 }
 
 
-/* ==================================================
+/* =========================================================
    BUTTONS
-================================================== */
+========================================================= */
 
 .heroButtons {
 
     display: flex;
 
-    gap: 9px;
+    align-items: center;
 
-    margin-top: 17px;
+    gap: 11px;
+
+    margin-top: 22px;
+
+    pointer-events: auto;
 }
 
 
 .primaryButton,
 .secondaryButton {
 
-    height: 31px;
-
-    padding:
-        0 16px;
-
     display: inline-flex;
 
     align-items: center;
     justify-content: center;
 
+    height: 42px;
+
+    padding:
+        0 23px;
+
     border-radius: 999px;
 
-    text-decoration: none;
-
-    font-size: 7px;
+    font-size: 10px;
 
     font-weight: 700;
 
-    letter-spacing: .8px;
+    letter-spacing: 1.2px;
+
+    text-decoration: none;
 
     transition:
         transform .3s ease,
-        background .3s ease;
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
 }
 
-
-/* Order */
 
 .primaryButton {
 
@@ -732,7 +903,16 @@ body {
 }
 
 
-/* Explore */
+.primaryButton:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.2);
+}
+
 
 .secondaryButton {
 
@@ -746,15 +926,7 @@ body {
     color: white;
 
     backdrop-filter:
-        blur(7px);
-}
-
-
-.primaryButton:hover,
-.secondaryButton:hover {
-
-    transform:
-        translateY(-3px);
+        blur(8px);
 }
 
 
@@ -763,65 +935,69 @@ body {
     background: white;
 
     color: #123424;
+
+    transform:
+        translateY(-3px);
 }
 
 
-/* ==================================================
-   TABLET
-================================================== */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 900px) {
 
     .navbar {
 
         padding:
-            0 4%;
+            0 30px;
     }
-
 
     .navLinks {
 
-        gap: 18px;
+        gap: 15px;
     }
-
 
     .navLinks a {
 
-        font-size: 10px;
+        font-size: 11px;
     }
 
+    .navLinks .signIn,
+    .navLinks .joinNow {
+
+        min-width: 90px;
+
+        height: 35px;
+
+        padding:
+            0 15px;
+
+        font-size: 11px;
+    }
 
     .hero {
 
-        left: 4%;
+        left: 30px;
 
-        bottom: 8%;
+        top: 60%;
 
-        width: 350px;
+        width:
+            calc(100% - 60px);
     }
-
 
     .hero h1 {
 
-        width: 320px;
-
-        font-size: 42px;
+        font-size: 48px;
     }
 }
 
 
-/* ==================================================
+/* =========================================================
    MOBILE
-================================================== */
+========================================================= */
 
 @media (max-width: 600px) {
-
-    .loadingLogoWrapper {
-
-        width: 270px;
-        height: 270px;
-    }
-
 
     .navbar {
 
@@ -831,70 +1007,62 @@ body {
             0 22px;
     }
 
-
     .navLogo {
 
         width: 52px;
         height: 52px;
     }
 
-
     .navLinks {
 
-        gap: 10px;
+        gap: 7px;
     }
-
 
     .navLinks a {
 
         font-size: 7px;
 
-        letter-spacing: .7px;
+        letter-spacing: .5px;
     }
 
-
-    .signIn,
-    .joinNow {
+    .navLinks .signIn,
+    .navLinks .joinNow {
 
         min-width: auto;
 
-        height: 30px;
+        height: 27px;
 
         padding:
             0 10px;
-    }
 
+        font-size: 7px;
+    }
 
     .hero {
 
         left: 22px;
 
-        bottom: 7%;
+        top: 60%;
 
         width:
             calc(100% - 44px);
     }
 
-
     .smallText {
 
-        font-size: 7px;
+        font-size: 6px;
 
         letter-spacing: 2px;
-
-        margin-bottom: 9px;
     }
-
 
     .hero h1 {
 
         width: 280px;
 
-        font-size: 36px;
+        font-size: 37px;
 
         letter-spacing: -1.5px;
     }
-
 
     .heroDescription {
 
@@ -903,23 +1071,39 @@ body {
         font-size: 8px;
     }
 
-
     .heroButtons {
 
-        margin-top: 14px;
-
         gap: 7px;
-    }
 
+        margin-top: 15px;
+    }
 
     .primaryButton,
     .secondaryButton {
 
-        height: 29px;
+        height: 31px;
 
         padding:
-            0 13px;
+            0 14px;
 
         font-size: 7px;
+    }
+
+    .loadingLogoWrapper {
+
+        width: 145px;
+        height: 145px;
+    }
+
+    .loadingBrand {
+
+        top: calc(50% + 100px);
+    }
+
+    .loadingBrand span {
+
+        font-size: 19px;
+
+        letter-spacing: 4px;
     }
 }

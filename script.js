@@ -1,6 +1,11 @@
-/* ==================================================
+/* =========================================================
+   STARBUCKS EXPERIENCE
+========================================================= */
+
+
+/* =========================================================
    ELEMENTS
-================================================== */
+========================================================= */
 
 const loadingScreen =
     document.getElementById("loadingScreen");
@@ -8,87 +13,187 @@ const loadingScreen =
 const loadingLogo =
     document.getElementById("loadingLogo");
 
+const loadingBrand =
+    document.querySelector(".loadingBrand");
+
 const homePage =
     document.getElementById("homePage");
 
 const particles =
     document.getElementById("particles");
 
-const backgroundVideo =
-    document.getElementById("backgroundVideo");
+const videoOne =
+    document.getElementById("backgroundVideo1");
+
+const videoTwo =
+    document.getElementById("backgroundVideo2");
 
 
-/* ==================================================
-   LOADING DUST PARTICLES
-================================================== */
+/* =========================================================
+   BACKGROUND VIDEOS
+========================================================= */
 
-function createDust() {
+const videos = [
 
-    const particleCount = 180;
+    "images/video1.mp4",
+    "images/video2.mp4",
+    "images/video3.mp4",
+    "images/video4.mp4"
 
-    for (let i = 0; i < particleCount; i++) {
+];
+
+
+/* =========================================================
+   REFRESH VIDEO SYSTEM
+========================================================= */
+
+/*
+    Every refresh changes the video:
+
+    Refresh 1 → video 1
+    Refresh 2 → video 2
+    Refresh 3 → video 3
+    Refresh 4 → video 4
+    Refresh 5 → video 1
+    ...
+
+    The index is saved in localStorage.
+*/
+
+let savedIndex =
+    parseInt(
+        localStorage.getItem(
+            "starbucksVideoIndex"
+        )
+    );
+
+
+if (
+    isNaN(savedIndex) ||
+    savedIndex < 0 ||
+    savedIndex >= videos.length
+) {
+
+    savedIndex = 0;
+}
+
+
+/* Use current video */
+
+let currentIndex =
+    savedIndex;
+
+
+/* Save NEXT video for next refresh */
+
+localStorage.setItem(
+    "starbucksVideoIndex",
+    (
+        currentIndex + 1
+    ) % videos.length
+);
+
+
+/* =========================================================
+   LOAD VIDEO
+========================================================= */
+
+function loadVideo(
+    videoElement,
+    videoPath
+) {
+
+    videoElement.src =
+        videoPath;
+
+    videoElement.load();
+
+    videoElement.muted = true;
+
+    videoElement.playsInline = true;
+
+    videoElement
+        .play()
+        .catch(() => {
+
+            console.log(
+                "Video autoplay waiting..."
+            );
+
+        });
+}
+
+
+/* Load first video */
+
+loadVideo(
+    videoOne,
+    videos[currentIndex]
+);
+
+
+/* =========================================================
+   PREPARE SECOND VIDEO
+========================================================= */
+
+let nextIndex =
+    (
+        currentIndex + 1
+    ) % videos.length;
+
+
+/* =========================================================
+   CREATE DUST PARTICLES
+========================================================= */
+
+function createParticles() {
+
+    particles.innerHTML = "";
+
+
+    const particleCount =
+        window.innerWidth <= 600
+            ? 60
+            : 120;
+
+
+    for (
+        let i = 0;
+        i < particleCount;
+        i++
+    ) {
 
         const particle =
             document.createElement("span");
 
-        particle.classList.add("particle");
 
-
-        /* Random size */
-
-        const size =
-            Math.random();
-
-        if (size < .25) {
-
-            particle.classList.add("small");
-
-        } else if (size > .80) {
-
-            particle.classList.add("large");
-        }
+        particle.classList.add(
+            "particle"
+        );
 
 
         /*
-            Random starting position
-            around the whole screen
-        */
-
-        particle.style.left =
-            Math.random() * 100 + "%";
-
-        particle.style.top =
-            Math.random() * 100 + "%";
-
-
-        /*
-            Random movement
-            creates dust-like motion
+            Random starting
+            position around screen
         */
 
         const startX =
-            (Math.random() - .5) * 400;
+            (
+                Math.random() - .5
+            ) * window.innerWidth;
+
 
         const startY =
-            (Math.random() - .5) * 400;
+            (
+                Math.random() - .5
+            ) * window.innerHeight;
 
-        const midX =
-            (Math.random() - .5) * 160;
 
-        const midY =
-            (Math.random() - .5) * 160;
+        particle.style.left =
+            "50%";
 
-        const endX =
-            (Math.random() - .5) * 70;
-
-        const endY =
-            (Math.random() - .5) * 70;
-
-        const finalX =
-            (Math.random() - .5) * 300;
-
-        const finalY =
-            (Math.random() - .5) * 300;
+        particle.style.top =
+            "50%";
 
 
         particle.style.setProperty(
@@ -96,201 +201,278 @@ function createDust() {
             `${startX}px`
         );
 
+
         particle.style.setProperty(
             "--startY",
             `${startY}px`
         );
 
-        particle.style.setProperty(
-            "--midX",
-            `${midX}px`
-        );
-
-        particle.style.setProperty(
-            "--midY",
-            `${midY}px`
-        );
-
-        particle.style.setProperty(
-            "--endX",
-            `${endX}px`
-        );
-
-        particle.style.setProperty(
-            "--endY",
-            `${endY}px`
-        );
-
-        particle.style.setProperty(
-            "--finalX",
-            `${finalX}px`
-        );
-
-        particle.style.setProperty(
-            "--finalY",
-            `${finalY}px`
-        );
-
-
-        /*
-            Random animation speed
-        */
-
-        const duration =
-            2.5 + Math.random() * 2;
 
         particle.style.setProperty(
             "--duration",
-            `${duration}s`
+            `${2.2 + Math.random() * 1.8}s`
+        );
+
+
+        particle.style.setProperty(
+            "--delay",
+            `${Math.random() * 1.1}s`
         );
 
 
         /*
-            Random delay
+            Random particle size
         */
 
-        particle.style.animationDelay =
-            Math.random() * 1.5 + "s";
+        const size =
+            1.5 +
+            Math.random() * 3.5;
 
 
-        particles.appendChild(particle);
+        particle.style.width =
+            `${size}px`;
+
+        particle.style.height =
+            `${size}px`;
+
+
+        particles.appendChild(
+            particle
+        );
     }
 }
 
 
-createDust();
+/* Create particles */
+
+createParticles();
 
 
-/* ==================================================
-   FOUR BACKGROUND VIDEOS
-================================================== */
-
-const videos = [
-
-    "images/video1.mp4",
-
-    "images/video2.mp4",
-
-    "images/video3.mp4",
-
-    "images/video4.mp4"
-
-];
-
-
-/* ==================================================
-   SELECT VIDEO FOR THIS REFRESH
-================================================== */
-
-/*
-    localStorage remembers which video
-    was used last time.
-
-    Example:
-
-    Refresh 1 → video1
-    Refresh 2 → video2
-    Refresh 3 → video3
-    Refresh 4 → video4
-    Refresh 5 → video1
-*/
-
-let lastVideo =
-    Number(
-        localStorage.getItem(
-            "coffeeLastVideo"
-        )
-    );
-
-
-/*
-    If there is no previous video,
-    start at video 1.
-*/
-
-if (
-    Number.isNaN(lastVideo) ||
-    lastVideo < 0 ||
-    lastVideo >= videos.length
-) {
-
-    lastVideo = -1;
-}
-
-
-/* Get next video */
-
-const currentVideo =
-    (lastVideo + 1) % videos.length;
-
-
-/* Save it */
-
-localStorage.setItem(
-    "coffeeLastVideo",
-    currentVideo
-);
-
-
-/* ==================================================
-   LOAD SELECTED VIDEO
-================================================== */
-
-backgroundVideo.src =
-    videos[currentVideo];
-
-backgroundVideo.load();
-
-
-/* ==================================================
-   PLAY VIDEO
-================================================== */
-
-backgroundVideo.addEventListener(
-    "canplay",
-    () => {
-
-        backgroundVideo
-            .play()
-            .catch(() => {});
-
-    },
-    { once: true }
-);
-
-
-/* ==================================================
-   PAGE LOADING
-================================================== */
+/* =========================================================
+   LOADING ANIMATION
+========================================================= */
 
 window.addEventListener(
     "load",
     () => {
 
-        /*
-            Give particles time
-            to start forming.
-        */
 
-        setTimeout(() => {
+        /* -----------------------------------------
+           Step 1 — Logo appears
+        ----------------------------------------- */
 
-            loadingLogo.classList.add("show");
+        setTimeout(
+            () => {
 
-        }, 900);
+                loadingLogo.classList.add(
+                    "show"
+                );
+
+            },
+            500
+        );
 
 
-        /*
-            After the dust/logo animation,
-            go to homepage.
-        */
+        /* -----------------------------------------
+           Step 2 — Brand appears
+        ----------------------------------------- */
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            loadingScreen.classList.add("hide");
+                loadingBrand.classList.add(
+                    "show"
+                );
 
-            homePage.classList.add("show");
+            },
+            1300
+        );
 
-        }, 3900);
+
+        /* -----------------------------------------
+           Step 3 — Go homepage
+        ----------------------------------------- */
+
+        setTimeout(
+            () => {
+
+                loadingScreen.classList.add(
+                    "hide"
+                );
+
+
+                homePage.classList.add(
+                    "show"
+                );
+
+
+                /*
+                    Start video again
+                    when homepage appears.
+                */
+
+                videoOne
+                    .play()
+                    .catch(() => {});
+
+
+            },
+            3300
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VIDEO CHANGE SYSTEM
+========================================================= */
+
+/*
+    This part is only needed if you want the
+    next video to automatically play AFTER
+    the current video ends.
+
+    So:
+
+    video1 → video2 → video3 → video4 → video1
+*/
+
+
+let activeVideo =
+    videoOne;
+
+let inactiveVideo =
+    videoTwo;
+
+
+function playNextVideo() {
+
+    nextIndex =
+        (
+            currentIndex + 1
+        ) % videos.length;
+
+
+    loadVideo(
+        inactiveVideo,
+        videos[nextIndex]
+    );
+
+
+    /*
+        Wait until the next video
+        has loaded enough.
+    */
+
+    inactiveVideo.addEventListener(
+        "canplay",
+        function handleCanPlay() {
+
+            inactiveVideo.removeEventListener(
+                "canplay",
+                handleCanPlay
+            );
+
+
+            inactiveVideo.classList.add(
+                "active"
+            );
+
+
+            activeVideo.classList.remove(
+                "active"
+            );
+
+
+            /*
+                Swap videos
+            */
+
+            const temp =
+                activeVideo;
+
+            activeVideo =
+                inactiveVideo;
+
+            inactiveVideo =
+                temp;
+
+
+            currentIndex =
+                nextIndex;
+
+        },
+        {
+            once: true
+        }
+    );
+}
+
+
+/* =========================================================
+   VIDEO ENDED
+========================================================= */
+
+videoOne.addEventListener(
+    "ended",
+    () => {
+
+        playNextVideo();
+
+    }
+);
+
+
+videoTwo.addEventListener(
+    "ended",
+    () => {
+
+        playNextVideo();
+
+    }
+);
+
+
+/* =========================================================
+   VIDEO ERROR HANDLING
+========================================================= */
+
+videoOne.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "Cannot load:",
+            videoOne.src
+        );
+
+    }
+);
+
+
+videoTwo.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "Cannot load:",
+            videoTwo.src
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RESPONSIVE PARTICLES
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        createParticles();
 
     }
 );

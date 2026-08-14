@@ -3,11 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Coffee Experience</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>StarBucks</title>
+
+    <!-- Browser Tab Icon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="images/1.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
@@ -18,6 +32,9 @@
 
     <div id="loadingScreen">
 
+        <!-- Ambient glow -->
+        <div class="loadingGlow"></div>
+
         <!-- Dust particles -->
         <div id="particles"></div>
 
@@ -26,9 +43,22 @@
 
             <img
                 src="images/1.png"
-                alt="Coffee Logo"
+                alt="StarBucks Logo"
                 id="loadingLogo"
             >
+
+        </div>
+
+        <!-- Brand Name -->
+        <div class="loadingBrand">
+
+            <span>StarBucks</span>
+
+            <div class="loadingLine"></div>
+
+            <small>
+                COFFEE EXPERIENCE
+            </small>
 
         </div>
 
@@ -41,11 +71,26 @@
 
     <main id="homePage">
 
-        <!-- Background Video -->
+        <!-- ==============================================
+             BACKGROUND VIDEO 1
+        ============================================== -->
 
         <video
-            id="backgroundVideo"
-            autoplay
+            id="backgroundVideo1"
+            class="backgroundVideo active"
+            muted
+            playsinline
+            preload="auto"
+        ></video>
+
+
+        <!-- ==============================================
+             BACKGROUND VIDEO 2
+        ============================================== -->
+
+        <video
+            id="backgroundVideo2"
+            class="backgroundVideo"
             muted
             playsinline
             preload="auto"
@@ -53,23 +98,25 @@
 
 
         <!-- Dark overlay -->
-
         <div class="videoOverlay"></div>
 
 
-        <!-- ==================================================
+        <!-- ==============================================
              NAVBAR
-        ================================================== -->
+        ============================================== -->
 
         <header class="navbar">
 
             <!-- Logo -->
 
-            <a href="#" class="navLogo">
+            <a
+                href="#"
+                class="navLogo"
+            >
 
                 <img
                     src="images/1.png"
-                    alt="Coffee Logo"
+                    alt="StarBucks Logo"
                 >
 
             </a>
@@ -79,17 +126,29 @@
 
             <nav class="navLinks">
 
-                <a href="#">MENU</a>
+                <a href="#">
+                    MENU
+                </a>
 
-                <a href="#">MERCHANDISE</a>
+                <a href="#">
+                    MERCHANDISE
+                </a>
 
-                <a href="#">REWARDS</a>
+                <a href="#">
+                    REWARDS
+                </a>
 
-                <a href="#" class="signIn">
+                <a
+                    href="#"
+                    class="signIn"
+                >
                     Sign in
                 </a>
 
-                <a href="#" class="joinNow">
+                <a
+                    href="#"
+                    class="joinNow"
+                >
                     Join Now
                 </a>
 
@@ -98,9 +157,9 @@
         </header>
 
 
-        <!-- ==================================================
+        <!-- ==============================================
              HERO
-        ================================================== -->
+        ============================================== -->
 
         <section class="hero">
 
