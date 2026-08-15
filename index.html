@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -22,194 +23,306 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
+
 
 <body>
 
-    <!-- ==================================================
-         LOADING SCREEN
-    ================================================== -->
 
-    <div id="loadingScreen">
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
 
-        <!-- Ambient glow -->
-        <div class="loadingGlow"></div>
+<div id="loadingScreen">
 
-        <!-- Dust particles -->
-        <div id="particles"></div>
+    <div class="loadingGlow"></div>
 
-        <!-- Logo -->
-        <div class="loadingLogoWrapper">
+    <div id="particles"></div>
 
-            <img
-                src="images/1.png"
-                alt="StarBucks Logo"
-                id="loadingLogo"
-            >
 
-        </div>
+    <div class="loadingLogoWrapper">
 
-        <!-- Brand Name -->
-        <div class="loadingBrand">
-
-            <span>StarBucks</span>
-
-            <div class="loadingLine"></div>
-
-            <small>
-                COFFEE EXPERIENCE
-            </small>
-
-        </div>
+        <img
+            src="images/1.png"
+            alt="StarBucks Logo"
+            id="loadingLogo"
+        >
 
     </div>
 
 
-    <!-- ==================================================
-         HOMEPAGE
-    ================================================== -->
+    <div class="loadingBrand">
 
-    <main id="homePage">
+        <span>StarBucks</span>
 
-        <!-- ==============================================
-             BACKGROUND VIDEO 1
-        ============================================== -->
+        <div class="loadingLine"></div>
 
-        <video
-            id="backgroundVideo1"
-            class="backgroundVideo active"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
+        <small>
+            COFFEE EXPERIENCE
+        </small>
+
+    </div>
+
+</div>
 
 
-        <!-- ==============================================
-             BACKGROUND VIDEO 2
-        ============================================== -->
 
-        <video
-            id="backgroundVideo2"
-            class="backgroundVideo"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
+<!-- =====================================================
+     HOMEPAGE
+===================================================== -->
+
+<main id="homePage">
 
 
-        <!-- Dark overlay -->
-        <div class="videoOverlay"></div>
+    <!-- =================================================
+         BACKGROUND VIDEO 1
+    ================================================= -->
+
+    <video
+        id="backgroundVideo1"
+        class="backgroundVideo active"
+        muted
+        playsinline
+        preload="auto"
+    ></video>
 
 
-        <!-- ==============================================
-             NAVBAR
-        ============================================== -->
+    <!-- =================================================
+         BACKGROUND VIDEO 2
+    ================================================= -->
 
-        <header class="navbar">
+    <video
+        id="backgroundVideo2"
+        class="backgroundVideo"
+        muted
+        playsinline
+        preload="auto"
+    ></video>
 
-            <!-- Logo -->
 
-            <a
-                href="#"
-                class="navLogo"
+    <!-- Video Overlay -->
+
+    <div class="videoOverlay"></div>
+
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================= -->
+
+    <header class="navbar">
+
+
+        <!-- Logo -->
+
+        <a
+            href="#"
+            class="navLogo"
+        >
+
+            <img
+                src="images/1.png"
+                alt="StarBucks Logo"
             >
 
-                <img
-                    src="images/1.png"
-                    alt="StarBucks Logo"
-                >
+        </a>
 
+
+        <!-- Navigation -->
+
+        <nav class="navLinks">
+
+            <a href="#">
+                MENU
+            </a>
+
+            <a href="#">
+                MERCHANDISE
+            </a>
+
+            <a href="#">
+                REWARDS
             </a>
 
 
-            <!-- Navigation -->
+            <a
+                href="#"
+                class="signIn"
+            >
+                Sign in
+            </a>
 
-            <nav class="navLinks">
 
-                <a href="#">
-                    MENU
-                </a>
+            <a
+                href="#"
+                class="joinNow"
+            >
+                Join Now
+            </a>
 
-                <a href="#">
-                    MERCHANDISE
-                </a>
+        </nav>
 
-                <a href="#">
-                    REWARDS
-                </a>
+    </header>
+
+
+
+    <!-- =================================================
+         HERO
+    ================================================= -->
+
+    <section class="hero">
+
+
+        <div class="heroContent">
+
+
+            <p class="smallText">
+                WELCOME TO YOUR COFFEE EXPERIENCE
+            </p>
+
+
+            <h1>
+                GOOD COFFEE.<br>
+                GOOD MOMENTS.
+            </h1>
+
+
+            <p class="heroDescription">
+
+                Discover handcrafted coffee,
+                delicious moments, and a place
+                made for everyone.
+
+            </p>
+
+
+            <div class="heroButtons">
+
 
                 <a
                     href="#"
-                    class="signIn"
+                    class="primaryButton"
                 >
-                    Sign in
+                    ORDER NOW
                 </a>
+
 
                 <a
-                    href="#"
-                    class="joinNow"
+                    href="#summerClub"
+                    class="secondaryButton"
                 >
-                    Join Now
+                    EXPLORE MENU
                 </a>
 
-            </nav>
-
-        </header>
-
-
-        <!-- ==============================================
-             HERO
-        ============================================== -->
-
-        <section class="hero">
-
-            <div class="heroContent">
-
-                <p class="smallText">
-                    WELCOME TO YOUR COFFEE EXPERIENCE
-                </p>
-
-
-                <h1>
-                    GOOD COFFEE.<br>
-                    GOOD MOMENTS.
-                </h1>
-
-
-                <p class="heroDescription">
-                    Discover handcrafted coffee,
-                    delicious moments, and a place
-                    made for everyone.
-                </p>
-
-
-                <div class="heroButtons">
-
-                    <a
-                        href="#"
-                        class="primaryButton"
-                    >
-                        ORDER NOW
-                    </a>
-
-
-                    <a
-                        href="#"
-                        class="secondaryButton"
-                    >
-                        EXPLORE MENU
-                    </a>
-
-                </div>
 
             </div>
 
-        </section>
 
-    </main>
+        </div>
 
 
-    <script src="script.js"></script>
+    </section>
+
+
+
+    <!-- =================================================
+         SUMMER CLUB SCROLL SECTION
+    ================================================= -->
+
+    <section
+        class="summer-section"
+        id="summerClub"
+    >
+
+
+        <div class="summer-sticky">
+
+
+            <!-- =================================================
+                 SUMMER CLUB IMAGE
+            ================================================= -->
+
+            <div class="summer-card">
+
+                <img
+                    src="images/2.png"
+                    alt="StarBucks Summer Club"
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUMMER TEXT
+            ================================================= -->
+
+            <div class="summer-text">
+
+
+                <p>
+
+                    As summer reaches its peak
+
+                    <span>
+                        Starbucks Summer Club
+                    </span>
+
+                    turns up electric vibes with brighter
+                    bursts, bolder flavors and sensory
+                    surprises — doubling down on .
+
+                </p>
+
+
+                <button>
+                    Explore
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         NEXT SECTION
+    ================================================= -->
+
+    <section class="afterSummer">
+
+        <div>
+
+            <p class="afterLabel">
+                STARBUCKS
+            </p>
+
+            <h2>
+                MORE MOMENTS.<br>
+                MORE COFFEE.
+            </h2>
+
+            <p>
+                Discover more from your favorite
+                coffee experience.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<script src="script.js"></script>
 
 </body>
 

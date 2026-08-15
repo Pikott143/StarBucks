@@ -1,11 +1,11 @@
-/* =========================================================
+/* =====================================================
    STARBUCKS EXPERIENCE
-========================================================= */
+===================================================== */
 
 
-/* =========================================================
+/* =====================================================
    ELEMENTS
-========================================================= */
+===================================================== */
 
 const loadingScreen =
     document.getElementById("loadingScreen");
@@ -29,9 +29,10 @@ const videoTwo =
     document.getElementById("backgroundVideo2");
 
 
-/* =========================================================
+
+/* =====================================================
    BACKGROUND VIDEOS
-========================================================= */
+===================================================== */
 
 const videos = [
 
@@ -43,22 +44,10 @@ const videos = [
 ];
 
 
-/* =========================================================
+
+/* =====================================================
    REFRESH VIDEO SYSTEM
-========================================================= */
-
-/*
-    Every refresh changes the video:
-
-    Refresh 1 → video 1
-    Refresh 2 → video 2
-    Refresh 3 → video 3
-    Refresh 4 → video 4
-    Refresh 5 → video 1
-    ...
-
-    The index is saved in localStorage.
-*/
+===================================================== */
 
 let savedIndex =
     parseInt(
@@ -75,16 +64,24 @@ if (
 ) {
 
     savedIndex = 0;
+
 }
 
-
-/* Use current video */
 
 let currentIndex =
     savedIndex;
 
 
-/* Save NEXT video for next refresh */
+/*
+    Save next video.
+
+    Refresh:
+    1 → video1
+    2 → video2
+    3 → video3
+    4 → video4
+    5 → video1
+*/
 
 localStorage.setItem(
     "starbucksVideoIndex",
@@ -94,9 +91,28 @@ localStorage.setItem(
 );
 
 
-/* =========================================================
+
+/* =====================================================
+   VIDEO VARIABLES
+===================================================== */
+
+let activeVideo =
+    videoOne;
+
+let inactiveVideo =
+    videoTwo;
+
+
+let nextIndex =
+    (
+        currentIndex + 1
+    ) % videos.length;
+
+
+
+/* =====================================================
    LOAD VIDEO
-========================================================= */
+===================================================== */
 
 function loadVideo(
     videoElement,
@@ -108,23 +124,19 @@ function loadVideo(
 
     videoElement.load();
 
-    videoElement.muted = true;
+    videoElement.muted =
+        true;
 
-    videoElement.playsInline = true;
+    videoElement.playsInline =
+        true;
 
-    videoElement
-        .play()
-        .catch(() => {
-
-            console.log(
-                "Video autoplay waiting..."
-            );
-
-        });
 }
 
 
-/* Load first video */
+
+/* =====================================================
+   FIRST VIDEO
+===================================================== */
 
 loadVideo(
     videoOne,
@@ -132,21 +144,15 @@ loadVideo(
 );
 
 
-/* =========================================================
-   PREPARE SECOND VIDEO
-========================================================= */
 
-let nextIndex =
-    (
-        currentIndex + 1
-    ) % videos.length;
-
-
-/* =========================================================
-   CREATE DUST PARTICLES
-========================================================= */
+/* =====================================================
+   DUST PARTICLES
+===================================================== */
 
 function createParticles() {
+
+    if (!particles) return;
+
 
     particles.innerHTML = "";
 
@@ -163,6 +169,7 @@ function createParticles() {
         i++
     ) {
 
+
         const particle =
             document.createElement("span");
 
@@ -172,10 +179,12 @@ function createParticles() {
         );
 
 
-        /*
-            Random starting
-            position around screen
-        */
+        particle.style.left =
+            "50%";
+
+        particle.style.top =
+            "50%";
+
 
         const startX =
             (
@@ -187,13 +196,6 @@ function createParticles() {
             (
                 Math.random() - .5
             ) * window.innerHeight;
-
-
-        particle.style.left =
-            "50%";
-
-        particle.style.top =
-            "50%";
 
 
         particle.style.setProperty(
@@ -220,10 +222,6 @@ function createParticles() {
         );
 
 
-        /*
-            Random particle size
-        */
-
         const size =
             1.5 +
             Math.random() * 3.5;
@@ -239,82 +237,100 @@ function createParticles() {
         particles.appendChild(
             particle
         );
+
     }
+
 }
 
-
-/* Create particles */
 
 createParticles();
 
 
-/* =========================================================
+
+/* =====================================================
    LOADING ANIMATION
-========================================================= */
+===================================================== */
 
 window.addEventListener(
     "load",
     () => {
 
 
-        /* -----------------------------------------
-           Step 1 — Logo appears
-        ----------------------------------------- */
+        /*
+            Logo
+        */
 
         setTimeout(
             () => {
 
-                loadingLogo.classList.add(
-                    "show"
-                );
+                if (loadingLogo) {
+
+                    loadingLogo.classList.add(
+                        "show"
+                    );
+
+                }
 
             },
             500
         );
 
 
-        /* -----------------------------------------
-           Step 2 — Brand appears
-        ----------------------------------------- */
+
+        /*
+            Brand
+        */
 
         setTimeout(
             () => {
 
-                loadingBrand.classList.add(
-                    "show"
-                );
+                if (loadingBrand) {
+
+                    loadingBrand.classList.add(
+                        "show"
+                    );
+
+                }
 
             },
             1300
         );
 
 
-        /* -----------------------------------------
-           Step 3 — Go homepage
-        ----------------------------------------- */
+
+        /*
+            Homepage
+        */
 
         setTimeout(
             () => {
 
-                loadingScreen.classList.add(
-                    "hide"
-                );
+
+                if (loadingScreen) {
+
+                    loadingScreen.classList.add(
+                        "hide"
+                    );
+
+                }
 
 
-                homePage.classList.add(
-                    "show"
-                );
+                if (homePage) {
+
+                    homePage.classList.add(
+                        "show"
+                    );
+
+                }
 
 
-                /*
-                    Start video again
-                    when homepage appears.
-                */
+                if (activeVideo) {
 
-                videoOne
-                    .play()
-                    .catch(() => {});
+                    activeVideo
+                        .play()
+                        .catch(() => {});
 
+                }
 
             },
             3300
@@ -324,29 +340,13 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   VIDEO CHANGE SYSTEM
-========================================================= */
 
-/*
-    This part is only needed if you want the
-    next video to automatically play AFTER
-    the current video ends.
-
-    So:
-
-    video1 → video2 → video3 → video4 → video1
-*/
-
-
-let activeVideo =
-    videoOne;
-
-let inactiveVideo =
-    videoTwo;
-
+/* =====================================================
+   NEXT VIDEO
+===================================================== */
 
 function playNextVideo() {
+
 
     nextIndex =
         (
@@ -360,14 +360,9 @@ function playNextVideo() {
     );
 
 
-    /*
-        Wait until the next video
-        has loaded enough.
-    */
+    const handleCanPlay =
+        () => {
 
-    inactiveVideo.addEventListener(
-        "canplay",
-        function handleCanPlay() {
 
             inactiveVideo.removeEventListener(
                 "canplay",
@@ -385,15 +380,18 @@ function playNextVideo() {
             );
 
 
-            /*
-                Swap videos
-            */
+            inactiveVideo
+                .play()
+                .catch(() => {});
+
 
             const temp =
                 activeVideo;
 
+
             activeVideo =
                 inactiveVideo;
+
 
             inactiveVideo =
                 temp;
@@ -402,49 +400,46 @@ function playNextVideo() {
             currentIndex =
                 nextIndex;
 
-        },
-        {
-            once: true
-        }
+        };
+
+
+    inactiveVideo.addEventListener(
+        "canplay",
+        handleCanPlay
     );
+
 }
 
 
-/* =========================================================
+
+/* =====================================================
    VIDEO ENDED
-========================================================= */
+===================================================== */
 
 videoOne.addEventListener(
     "ended",
-    () => {
-
-        playNextVideo();
-
-    }
+    playNextVideo
 );
 
 
 videoTwo.addEventListener(
     "ended",
-    () => {
-
-        playNextVideo();
-
-    }
+    playNextVideo
 );
 
 
-/* =========================================================
-   VIDEO ERROR HANDLING
-========================================================= */
+
+/* =====================================================
+   VIDEO ERROR
+===================================================== */
 
 videoOne.addEventListener(
     "error",
     () => {
 
         console.error(
-            "Cannot load:",
-            videoOne.src
+            "Cannot load video:",
+            videos[currentIndex]
         );
 
     }
@@ -456,23 +451,222 @@ videoTwo.addEventListener(
     () => {
 
         console.error(
-            "Cannot load:",
-            videoTwo.src
+            "Cannot load next video."
         );
 
     }
 );
 
 
-/* =========================================================
-   RESPONSIVE PARTICLES
-========================================================= */
+
+/* =====================================================
+   SUMMER CLUB SCROLL ANIMATION
+===================================================== */
+
+const summerSection =
+    document.querySelector(
+        ".summer-section"
+    );
+
+
+const summerCard =
+    document.querySelector(
+        ".summer-card"
+    );
+
+
+const summerText =
+    document.querySelector(
+        ".summer-text"
+    );
+
+
+
+function updateSummerAnimation() {
+
+
+    if (
+        !summerSection ||
+        !summerCard ||
+        !summerText
+    ) {
+
+        return;
+
+    }
+
+
+    const rect =
+        summerSection.getBoundingClientRect();
+
+
+    const sectionHeight =
+        summerSection.offsetHeight;
+
+
+    const viewportHeight =
+        window.innerHeight;
+
+
+    /*
+        Total scroll distance
+    */
+
+    const scrollDistance =
+        sectionHeight -
+        viewportHeight;
+
+
+    /*
+        Calculate progress.
+
+        0 = beginning
+        1 = end
+    */
+
+    let progress =
+        -rect.top /
+        scrollDistance;
+
+
+    progress =
+        Math.max(
+            0,
+            Math.min(
+                1,
+                progress
+            )
+        );
+
+
+
+    /* =================================================
+       CARD MOVEMENT
+    ================================================= */
+
+
+    /*
+        Card slowly moves upward.
+    */
+
+    const cardY =
+        progress * -90;
+
+
+    /*
+        Slight scale down.
+    */
+
+    const cardScale =
+        1 -
+        progress * .12;
+
+
+    summerCard.style.transform =
+        `
+        translateY(${cardY}px)
+        scale(${cardScale})
+        `;
+
+
+
+    /* =================================================
+       TEXT REVEAL
+    ================================================= */
+
+    /*
+        Text starts appearing
+        at 35%.
+    */
+
+    const textStart =
+        .35;
+
+
+    const textEnd =
+        .65;
+
+
+    let textProgress =
+        (
+            progress -
+            textStart
+        ) /
+        (
+            textEnd -
+            textStart
+        );
+
+
+    textProgress =
+        Math.max(
+            0,
+            Math.min(
+                1,
+                textProgress
+            )
+        );
+
+
+
+    /*
+        Text comes from below.
+    */
+
+    const textY =
+        80 -
+        (
+            80 *
+            textProgress
+        );
+
+
+    summerText.style.opacity =
+        textProgress;
+
+
+    summerText.style.transform =
+        `
+        translateY(${textY}px)
+        `;
+
+}
+
+
+
+/* =====================================================
+   SCROLL EVENT
+===================================================== */
+
+window.addEventListener(
+    "scroll",
+    updateSummerAnimation,
+    {
+        passive: true
+    }
+);
+
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateSummerAnimation();
+
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
 
 window.addEventListener(
     "resize",
     () => {
 
         createParticles();
+
+        updateSummerAnimation();
 
     }
 );
