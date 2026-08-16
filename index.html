@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -22,23 +23,23 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
+
 
 <body>
 
-    <!-- ==================================================
+
+    <!-- =====================================================
          LOADING SCREEN
-    ================================================== -->
+    ====================================================== -->
 
     <div id="loadingScreen">
 
-        <!-- Ambient glow -->
         <div class="loadingGlow"></div>
 
-        <!-- Dust particles -->
         <div id="particles"></div>
 
-        <!-- Logo -->
         <div class="loadingLogoWrapper">
 
             <img
@@ -49,7 +50,6 @@
 
         </div>
 
-        <!-- Brand Name -->
         <div class="loadingBrand">
 
             <span>StarBucks</span>
@@ -65,148 +65,284 @@
     </div>
 
 
-    <!-- ==================================================
-         HOMEPAGE
-    ================================================== -->
 
-    <main id="homePage">
+    <!-- =====================================================
+         MAIN SCROLL CONTAINER
+    ====================================================== -->
 
-        <!-- ==============================================
-             BACKGROUND VIDEO 1
-        ============================================== -->
-
-        <video
-            id="backgroundVideo1"
-            class="backgroundVideo active"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
+    <main id="page">
 
 
-        <!-- ==============================================
-             BACKGROUND VIDEO 2
-        ============================================== -->
+        <!-- =================================================
+             SECTION 1 — LANDING PAGE
+        ================================================== -->
 
-        <video
-            id="backgroundVideo2"
-            class="backgroundVideo"
-            muted
-            playsinline
-            preload="auto"
-        ></video>
+        <section
+            class="pageSection landingSection"
+            id="homePage"
+        >
 
 
-        <!-- Dark overlay -->
-        <div class="videoOverlay"></div>
+            <!-- Background Video 1 -->
+
+            <video
+                id="backgroundVideo1"
+                class="backgroundVideo active"
+                muted
+                playsinline
+                preload="auto"
+            ></video>
 
 
-        <!-- ==============================================
-             NAVBAR
-        ============================================== -->
+            <!-- Background Video 2 -->
 
-        <header class="navbar">
-
-            <!-- Logo -->
-
-            <a
-                href="#"
-                class="navLogo"
-            >
-
-                <img
-                    src="images/1.png"
-                    alt="StarBucks Logo"
-                >
-
-            </a>
+            <video
+                id="backgroundVideo2"
+                class="backgroundVideo"
+                muted
+                playsinline
+                preload="auto"
+            ></video>
 
 
-            <!-- Navigation -->
+            <!-- Dark overlay -->
 
-            <nav class="navLinks">
+            <div class="videoOverlay"></div>
 
-                <a href="#">
-                    MENU
-                </a>
 
-                <a href="#">
-                    MERCHANDISE
-                </a>
+            <!-- NAVBAR -->
 
-                <a href="#">
-                    REWARDS
-                </a>
+            <header class="navbar">
+
+
+                <!-- LOGO -->
 
                 <a
                     href="#"
-                    class="signIn"
+                    class="navLogo"
                 >
-                    Sign in
+
+                    <img
+                        src="images/1.png"
+                        alt="StarBucks Logo"
+                    >
+
                 </a>
 
-                <a
-                    href="#"
-                    class="joinNow"
-                >
-                    Join Now
-                </a>
-
-            </nav>
-
-        </header>
 
 
-        <!-- ==============================================
-             HERO
-        ============================================== -->
+                <!-- NAVIGATION -->
 
-        <section class="hero">
+                <nav class="navLinks">
 
-            <div class="heroContent">
+                    <a href="#summer">
+                        MENU
+                    </a>
 
-                <p class="smallText">
-                    WELCOME TO YOUR COFFEE EXPERIENCE
-                </p>
+                    <a href="#summer">
+                        MERCHANDISE
+                    </a>
 
-
-                <h1>
-                    GOOD COFFEE.<br>
-                    GOOD MOMENTS.
-                </h1>
-
-
-                <p class="heroDescription">
-                    Discover handcrafted coffee,
-                    delicious moments, and a place
-                    made for everyone.
-                </p>
-
-
-                <div class="heroButtons">
+                    <a href="#summer">
+                        REWARDS
+                    </a>
 
                     <a
                         href="#"
-                        class="primaryButton"
+                        class="signIn"
                     >
-                        ORDER NOW
+                        Sign in
                     </a>
-
 
                     <a
                         href="#"
-                        class="secondaryButton"
+                        class="joinNow"
                     >
-                        EXPLORE MENU
+                        Join Now
                     </a>
+
+                </nav>
+
+
+            </header>
+
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div class="heroContent">
+
+
+                    <p class="smallText">
+                        WELCOME TO YOUR COFFEE EXPERIENCE
+                    </p>
+
+
+                    <h1>
+                        GOOD COFFEE.<br>
+                        GOOD MOMENTS.
+                    </h1>
+
+
+                    <p class="heroDescription">
+                        Discover handcrafted coffee,
+                        delicious moments, and a place
+                        made for everyone.
+                    </p>
+
+
+                    <div class="heroButtons">
+
+
+                        <a
+                            href="#summer"
+                            class="primaryButton"
+                        >
+                            ORDER NOW
+                        </a>
+
+
+                        <a
+                            href="#summer"
+                            class="secondaryButton"
+                        >
+                            EXPLORE MENU
+                        </a>
+
+
+                    </div>
+
 
                 </div>
 
             </div>
 
+
+
+            <!-- SCROLL INDICATOR -->
+
+            <a
+                href="#summer"
+                class="scrollIndicator"
+            >
+
+                <span></span>
+
+                <small>
+                    SCROLL TO EXPLORE
+                </small>
+
+            </a>
+
+
         </section>
 
+
+
+        <!-- =================================================
+             SECTION 2 — SUMMER CLUB
+        ================================================== -->
+
+        <section
+            class="pageSection summerSection"
+            id="summer"
+        >
+
+
+            <!-- Background -->
+
+            <div class="summerBackground"></div>
+
+            <div class="summerOverlay"></div>
+
+
+
+            <!-- CONTENT -->
+
+            <div class="summerContainer">
+
+
+                <!-- IMAGE -->
+
+                <div class="summerImageWrapper">
+
+                    <img
+                        src="images/2.png"
+                        alt="StarBucks Summer Club"
+                        class="summerImage"
+                    >
+
+                </div>
+
+
+
+                <!-- TEXT -->
+
+                <div class="summerContent">
+
+
+                    <p class="summerEyebrow">
+                        STARBUCKS SUMMER CLUB
+                    </p>
+
+
+                    <h2>
+
+                        <span>Summer</span>
+
+                        <em>
+                            is here.
+                        </em>
+
+                    </h2>
+
+
+                    <p class="summerDescription">
+
+                        As summer reaches its peak,
+                        Starbucks Summer Club turns up
+                        electric vibes with brighter bursts,
+                        bolder flavors and seasonal
+                        surprises — doubling down on the joy.
+
+                    </p>
+
+
+                    <a
+                        href="#"
+                        class="summerButton"
+                    >
+                        EXPLORE
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SCROLL DOWN -->
+
+            <a
+                href="#homePage"
+                class="summerScroll"
+            >
+
+                ↑
+                BACK TO TOP
+
+            </a>
+
+
+        </section>
+
+
     </main>
+
 
 
     <script src="script.js"></script>

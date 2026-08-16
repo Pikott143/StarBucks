@@ -16,9 +16,6 @@ const loadingLogo =
 const loadingBrand =
     document.querySelector(".loadingBrand");
 
-const homePage =
-    document.getElementById("homePage");
-
 const particles =
     document.getElementById("particles");
 
@@ -28,133 +25,6 @@ const videoOne =
 const videoTwo =
     document.getElementById("backgroundVideo2");
 
-
-/* =========================================================
-   BACKGROUND MUSIC
-========================================================= */
-
-/*
-   Folder structure:
-
-   StarBucks/
-   │
-   ├── music/
-   │   └── music/1.mp3
-   │
-   ├── images/
-   ├── index.html
-   ├── script.js
-   └── style.css
-*/
-
-const backgroundMusic =
-    new Audio("music/1.mp3");
-
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.35;
-backgroundMusic.preload = "auto";
-
-
-/* =========================================================
-   START MUSIC
-========================================================= */
-
-function startMusic() {
-
-    if (!backgroundMusic) return;
-
-    backgroundMusic
-        .play()
-        .then(() => {
-
-            console.log(
-                "🎵 Background music is playing!"
-            );
-
-        })
-        .catch((error) => {
-
-            console.log(
-                "🔇 Autoplay blocked by browser.",
-                error
-            );
-
-        });
-}
-
-
-/* =========================================================
-   MUSIC FALLBACK
-========================================================= */
-
-/*
-   Chrome/Edge may block unmuted autoplay.
-
-   If that happens, the music will start
-   when the user first clicks/touches/presses
-   a key.
-*/
-
-function startMusicFromInteraction() {
-
-    if (
-        backgroundMusic.paused
-    ) {
-
-        backgroundMusic
-            .play()
-            .then(() => {
-
-                console.log(
-                    "🎵 Music started after user interaction!"
-                );
-
-            })
-            .catch(() => {});
-
-    }
-
-    document.removeEventListener(
-        "click",
-        startMusicFromInteraction
-    );
-
-    document.removeEventListener(
-        "pointerdown",
-        startMusicFromInteraction
-    );
-
-    document.removeEventListener(
-        "keydown",
-        startMusicFromInteraction
-    );
-
-    document.removeEventListener(
-        "touchstart",
-        startMusicFromInteraction
-    );
-}
-
-
-document.addEventListener(
-    "click",
-    startMusicFromInteraction
-);
-
-document.addEventListener(
-    "pointerdown",
-    startMusicFromInteraction
-);
-
-document.addEventListener(
-    "keydown",
-    startMusicFromInteraction
-);
-
-document.addEventListener(
-    "touchstart",
-    startMusicFromInteraction
-);
 
 
 /* =========================================================
@@ -171,18 +41,17 @@ const videos = [
 ];
 
 
+
 /* =========================================================
    REFRESH VIDEO SYSTEM
 ========================================================= */
 
 /*
-   Every refresh changes the video:
-
-   Refresh 1 → video1
-   Refresh 2 → video2
-   Refresh 3 → video3
-   Refresh 4 → video4
-   Refresh 5 → video1
+   Refresh 1 → video 1
+   Refresh 2 → video 2
+   Refresh 3 → video 3
+   Refresh 4 → video 4
+   Refresh 5 → video 1
 */
 
 let savedIndex =
@@ -192,8 +61,6 @@ let savedIndex =
         )
     );
 
-
-/* Check saved index */
 
 if (
     isNaN(savedIndex) ||
@@ -206,13 +73,11 @@ if (
 }
 
 
-/* Current video */
-
 let currentIndex =
     savedIndex;
 
 
-/* Save next video for next refresh */
+/* Save next video */
 
 localStorage.setItem(
     "starbucksVideoIndex",
@@ -220,6 +85,7 @@ localStorage.setItem(
         currentIndex + 1
     ) % videos.length
 );
+
 
 
 /* =========================================================
@@ -232,15 +98,11 @@ let activeVideo =
 let inactiveVideo =
     videoTwo;
 
-
-/* =========================================================
-   NEXT VIDEO
-========================================================= */
-
 let nextIndex =
     (
         currentIndex + 1
     ) % videos.length;
+
 
 
 /* =========================================================
@@ -251,8 +113,6 @@ function loadVideo(
     videoElement,
     videoPath
 ) {
-
-    if (!videoElement) return;
 
     videoElement.src =
         videoPath;
@@ -268,9 +128,8 @@ function loadVideo(
 }
 
 
-/* =========================================================
-   LOAD FIRST VIDEO
-========================================================= */
+
+/* Load first video */
 
 loadVideo(
     videoOne,
@@ -278,18 +137,40 @@ loadVideo(
 );
 
 
+
 /* =========================================================
-   CREATE DUST PARTICLES
+   PLAY VIDEO
+========================================================= */
+
+function startVideo() {
+
+    activeVideo
+        .play()
+        .catch(() => {
+
+            console.log(
+                "Video autoplay waiting..."
+            );
+
+        });
+
+}
+
+
+
+/* =========================================================
+   DUST PARTICLES
 ========================================================= */
 
 function createParticles() {
 
     if (!particles) return;
 
+
     particles.innerHTML = "";
 
 
-    const particleCount =
+    const count =
         window.innerWidth <= 600
             ? 60
             : 120;
@@ -297,9 +178,10 @@ function createParticles() {
 
     for (
         let i = 0;
-        i < particleCount;
+        i < count;
         i++
     ) {
+
 
         const particle =
             document.createElement("span");
@@ -310,11 +192,6 @@ function createParticles() {
         );
 
 
-        /*
-           Start from center
-           then spread outward.
-        */
-
         particle.style.left =
             "50%";
 
@@ -324,14 +201,16 @@ function createParticles() {
 
         const startX =
             (
-                Math.random() - 0.5
-            ) * window.innerWidth;
+                Math.random() - .5
+            ) *
+            window.innerWidth;
 
 
         const startY =
             (
-                Math.random() - 0.5
-            ) * window.innerHeight;
+                Math.random() - .5
+            ) *
+            window.innerHeight;
 
 
         particle.style.setProperty(
@@ -382,6 +261,7 @@ function createParticles() {
 createParticles();
 
 
+
 /* =========================================================
    LOADING ANIMATION
 ========================================================= */
@@ -391,10 +271,7 @@ window.addEventListener(
     () => {
 
 
-        /* -----------------------------------------
-           STEP 1
-           Logo appears
-        ----------------------------------------- */
+        /* Logo */
 
         setTimeout(
             () => {
@@ -412,10 +289,8 @@ window.addEventListener(
         );
 
 
-        /* -----------------------------------------
-           STEP 2
-           Brand appears
-        ----------------------------------------- */
+
+        /* Brand */
 
         setTimeout(
             () => {
@@ -433,10 +308,8 @@ window.addEventListener(
         );
 
 
-        /* -----------------------------------------
-           STEP 3
-           Homepage appears
-        ----------------------------------------- */
+
+        /* Homepage */
 
         setTimeout(
             () => {
@@ -450,31 +323,7 @@ window.addEventListener(
                 }
 
 
-                if (homePage) {
-
-                    homePage.classList.add(
-                        "show"
-                    );
-
-                }
-
-
-                /* Start background video */
-
-                if (activeVideo) {
-
-                    activeVideo
-                        .play()
-                        .catch(() => {});
-
-                }
-
-
-                /* =================================
-                   START MUSIC
-                ================================= */
-
-                startMusic();
+                startVideo();
 
             },
             3300
@@ -484,20 +333,13 @@ window.addEventListener(
 );
 
 
+
 /* =========================================================
-   VIDEO CHANGE SYSTEM
+   NEXT VIDEO
 ========================================================= */
 
-/*
-   After one video ends:
-
-   video1 → video2
-   video2 → video3
-   video3 → video4
-   video4 → video1
-*/
-
 function playNextVideo() {
+
 
     nextIndex =
         (
@@ -505,18 +347,15 @@ function playNextVideo() {
         ) % videos.length;
 
 
-    /* Load next video */
-
     loadVideo(
         inactiveVideo,
         videos[nextIndex]
     );
 
 
-    /* Wait until video can play */
-
     const handleCanPlay =
         () => {
+
 
             inactiveVideo.removeEventListener(
                 "canplay",
@@ -524,28 +363,20 @@ function playNextVideo() {
             );
 
 
-            /* Show next video */
-
             inactiveVideo.classList.add(
                 "active"
             );
 
-
-            /* Hide current video */
 
             activeVideo.classList.remove(
                 "active"
             );
 
 
-            /* Play next video */
-
             inactiveVideo
                 .play()
                 .catch(() => {});
 
-
-            /* Swap video elements */
 
             const temp =
                 activeVideo;
@@ -558,8 +389,6 @@ function playNextVideo() {
             inactiveVideo =
                 temp;
 
-
-            /* Update index */
 
             currentIndex =
                 nextIndex;
@@ -575,78 +404,63 @@ function playNextVideo() {
 }
 
 
+
 /* =========================================================
    VIDEO ENDED
 ========================================================= */
 
-if (videoOne) {
+videoOne.addEventListener(
+    "ended",
+    () => {
 
-    videoOne.addEventListener(
-        "ended",
-        () => {
+        playNextVideo();
 
-            playNextVideo();
-
-        }
-    );
-
-}
+    }
+);
 
 
-if (videoTwo) {
+videoTwo.addEventListener(
+    "ended",
+    () => {
 
-    videoTwo.addEventListener(
-        "ended",
-        () => {
+        playNextVideo();
 
-            playNextVideo();
+    }
+);
 
-        }
-    );
-
-}
 
 
 /* =========================================================
    VIDEO ERROR
 ========================================================= */
 
-if (videoOne) {
+videoOne.addEventListener(
+    "error",
+    () => {
 
-    videoOne.addEventListener(
-        "error",
-        () => {
+        console.error(
+            "Cannot load video 1"
+        );
 
-            console.error(
-                "Cannot load video:",
-                videoOne.src
-            );
-
-        }
-    );
-
-}
+    }
+);
 
 
-if (videoTwo) {
+videoTwo.addEventListener(
+    "error",
+    () => {
 
-    videoTwo.addEventListener(
-        "error",
-        () => {
+        console.error(
+            "Cannot load video 2"
+        );
 
-            console.error(
-                "Cannot load video:",
-                videoTwo.src
-            );
+    }
+);
 
-        }
-    );
-
-}
 
 
 /* =========================================================
-   RESPONSIVE PARTICLES
+   RESIZE PARTICLES
 ========================================================= */
 
 window.addEventListener(
@@ -659,19 +473,53 @@ window.addEventListener(
 );
 
 
+
 /* =========================================================
-   PAGE EXIT
+   SCROLL ANIMATION
 ========================================================= */
 
-window.addEventListener(
-    "beforeunload",
-    () => {
+const summerSection =
+    document.getElementById("summer");
 
-        if (backgroundMusic) {
 
-            backgroundMusic.pause();
+const summerImage =
+    document.querySelector(".summerImageWrapper");
 
+
+const summerContent =
+    document.querySelector(".summerContent");
+
+
+const observer =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        summerImage.style.animation =
+                            "summerImageIn 1.2s cubic-bezier(.2,.8,.2,1) forwards";
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: .35
         }
+    );
 
-    }
-);
+
+if (summerSection) {
+
+    observer.observe(
+        summerSection
+    );
+
+}
