@@ -2294,4 +2294,66 @@ h3 {
         letter-spacing: 3px;
     }
 
+} 
+
+/* =========================================================
+   FIX — FULL PAGE SCROLL
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Main page must be allowed to grow */
+#homePage,
+#page {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow: visible;
+}
+
+/* Every section can grow naturally */
+.pageSection {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow: visible;
+}
+
+/* Summer / gallery section */
+.summerSection {
+    min-height: 100vh;
+    height: auto;
+    padding: 100px 0;
+}
+
+/* Prevent content from being cut */
+.summerContainer {
+    width: min(92%, 1500px);
+    margin: 0 auto;
+}
+
+/* Images must stay inside their section */
+.summerImageWrapper,
+.summerCard,
+.summerGalleryCard {
+    overflow: hidden;
+}
+
+/* Back to top stays clickable */
+.summerScroll {
+    position: fixed;
+    right: 35px;
+    bottom: 25px;
+    z-index: 100;
 }
