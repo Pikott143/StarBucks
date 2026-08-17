@@ -865,19 +865,15 @@ body {
     inset: 0;
 
     background-image:
-        url("images/summerclub.png");
+        url("images/3.png");
 
     background-size: cover;
 
     background-position: center;
 
     filter:
-        blur(15px)
-        brightness(.35)
-        saturate(.8);
-
-    transform:
-        scale(1.08);
+        brightness(.85)
+        saturate(1);
 
     z-index: 0;
 }
@@ -897,9 +893,9 @@ body {
 
         linear-gradient(
             90deg,
-            rgba(0,0,0,.75),
-            rgba(0,0,0,.48),
-            rgba(0,0,0,.72)
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.12),
+            rgba(0,0,0,.20)
         );
 
     z-index: 1;
