@@ -2358,6 +2358,10 @@ body {
    FLOATING MUSIC PLAYER
 ========================================================= */
 
+#backgroundMusic {
+    display: none;
+}
+
 .musicButton {
 
     position: fixed;

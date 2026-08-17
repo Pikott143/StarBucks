@@ -585,28 +585,6 @@ if (gallerySection) {
 
 }
 
-
-/* =========================================================
-   CARD CLICK EFFECT
-========================================================= */
-
-galleryCards.forEach(
-    (card) => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                card.classList.toggle(
-                    "selected"
-                );
-
-            }
-        );
-
-    }
-); 
-
 /* =========================================================
    FLOATING MUSIC PLAYER
 ========================================================= */
@@ -618,69 +596,135 @@ const musicButton =
     document.getElementById("musicButton");
 
 
-let musicPlaying = false;
+console.log("🔍 Checking music player elements...");
+console.log("📀 Music element found:", !!music);
+console.log("🔘 Button element found:", !!musicButton);
 
 
-/* =========================================================
-   MUSIC BUTTON
-========================================================= */
+/* Debug audio loading */
+if (music) {
+    
+    console.log("📡 Audio element details:", {
+        id: music.id,
+        src: music.src,
+        canPlayType: music.canPlayType("audio/mpeg"),
+        networkState: music.networkState,
+        readyState: music.readyState
+    });
+    
+    music.addEventListener("loadstart", () => {
+        console.log("📀 Loading music file...");
+    });
+    
+    music.addEventListener("canplay", () => {
+        console.log("✅ Music file ready to play");
+    });
+    
+    music.addEventListener("error", (e) => {
+        console.error("❌ Audio error:", e);
+        console.error("Error code:", music.error?.code, music.error?.message);
+    });
+    
+    music.addEventListener("play", () => {
+        console.log("▶️ Music started playing");
+    });
+    
+    music.addEventListener("pause", () => {
+        console.log("⏸ Music paused");
+    });
+    
+}
 
-musicButton.addEventListener(
-    "click",
-    async () => {
 
-        if (!musicPlaying) {
+/* Make sure the elements exist */
+if (music && musicButton) {
+
+    /* =====================================================
+       MUSIC BUTTON
+    ===================================================== */
+
+    musicButton.addEventListener(
+        "click",
+        async () => {
 
             try {
 
-                await music.play();
+                if (music.paused) {
 
-                musicPlaying = true;
+                    await music.play();
 
-                musicButton.classList.add(
-                    "playing"
-                );
+                    musicButton.classList.add(
+                        "playing"
+                    );
 
-                musicButton.setAttribute(
-                    "aria-label",
-                    "Pause music"
-                );
+                    musicButton.setAttribute(
+                        "aria-label",
+                        "Pause music"
+                    );
 
-                musicButton.setAttribute(
-                    "title",
-                    "Pause music"
-                );
+                    musicButton.setAttribute(
+                        "title",
+                        "Pause music"
+                    );
+
+                    console.log(
+                        "🎵 Music playing"
+                    );
+
+                } else {
+
+                    music.pause();
+
+                    musicButton.classList.remove(
+                        "playing"
+                    );
+
+                    musicButton.setAttribute(
+                        "aria-label",
+                        "Play music"
+                    );
+
+                    musicButton.setAttribute(
+                        "title",
+                        "Play music"
+                    );
+
+                    console.log(
+                        "⏸ Music paused"
+                    );
+
+                }
 
             } catch (error) {
 
-                console.log(
-                    "Music could not start:",
+                console.error(
+                    "❌ Music error:",
                     error
+                );
+
+                alert(
+                    "Music file could not be played. Please check if music/1.mp3 exists."
                 );
 
             }
 
-        } else {
+        }
+    );
 
-            music.pause();
 
-            musicPlaying = false;
+    /* =====================================================
+       MUSIC ENDED
+    ===================================================== */
+
+    music.addEventListener(
+        "ended",
+        () => {
 
             musicButton.classList.remove(
                 "playing"
             );
 
-            musicButton.setAttribute(
-                "aria-label",
-                "Play music"
-            );
-
-            musicButton.setAttribute(
-                "title",
-                "Play music"
-            );
-
         }
+    );
 
-    }
-);
+}
