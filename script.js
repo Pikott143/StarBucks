@@ -26,7 +26,6 @@ const videoTwo =
     document.getElementById("backgroundVideo2");
 
 
-
 /* =========================================================
    BACKGROUND VIDEOS
 ========================================================= */
@@ -34,25 +33,19 @@ const videoTwo =
 const videos = [
 
     "images/video1.mp4",
+
     "images/video2.mp4",
+
     "images/video3.mp4",
+
     "images/video4.mp4"
 
 ];
 
 
-
 /* =========================================================
    REFRESH VIDEO SYSTEM
 ========================================================= */
-
-/*
-   Refresh 1 → video 1
-   Refresh 2 → video 2
-   Refresh 3 → video 3
-   Refresh 4 → video 4
-   Refresh 5 → video 1
-*/
 
 let savedIndex =
     parseInt(
@@ -87,7 +80,6 @@ localStorage.setItem(
 );
 
 
-
 /* =========================================================
    VIDEO VARIABLES
 ========================================================= */
@@ -102,7 +94,6 @@ let nextIndex =
     (
         currentIndex + 1
     ) % videos.length;
-
 
 
 /* =========================================================
@@ -128,14 +119,14 @@ function loadVideo(
 }
 
 
-
-/* Load first video */
+/* =========================================================
+   LOAD FIRST VIDEO
+========================================================= */
 
 loadVideo(
     videoOne,
     videos[currentIndex]
 );
-
 
 
 /* =========================================================
@@ -155,7 +146,6 @@ function startVideo() {
         });
 
 }
-
 
 
 /* =========================================================
@@ -261,7 +251,6 @@ function createParticles() {
 createParticles();
 
 
-
 /* =========================================================
    LOADING ANIMATION
 ========================================================= */
@@ -271,7 +260,7 @@ window.addEventListener(
     () => {
 
 
-        /* Logo */
+        /* LOGO */
 
         setTimeout(
             () => {
@@ -289,8 +278,7 @@ window.addEventListener(
         );
 
 
-
-        /* Brand */
+        /* BRAND */
 
         setTimeout(
             () => {
@@ -308,8 +296,7 @@ window.addEventListener(
         );
 
 
-
-        /* Homepage */
+        /* HIDE LOADING */
 
         setTimeout(
             () => {
@@ -331,7 +318,6 @@ window.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -404,7 +390,6 @@ function playNextVideo() {
 }
 
 
-
 /* =========================================================
    VIDEO ENDED
 ========================================================= */
@@ -427,7 +412,6 @@ videoTwo.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -458,7 +442,6 @@ videoTwo.addEventListener(
 );
 
 
-
 /* =========================================================
    RESIZE PARTICLES
 ========================================================= */
@@ -473,9 +456,8 @@ window.addEventListener(
 );
 
 
-
 /* =========================================================
-   SCROLL ANIMATION
+   SUMMER IMAGE ANIMATION
 ========================================================= */
 
 const summerSection =
@@ -483,15 +465,20 @@ const summerSection =
 
 
 const summerImage =
-    document.querySelector(".summerImageWrapper");
+    document.querySelector(
+        ".summerImageWrapper"
+    );
 
 
 const summerContent =
-    document.querySelector(".summerContent");
+    document.querySelector(
+        ".summerContent"
+    );
 
 
 const observer =
     new IntersectionObserver(
+
         (entries) => {
 
             entries.forEach(
@@ -501,8 +488,12 @@ const observer =
                         entry.isIntersecting
                     ) {
 
-                        summerImage.style.animation =
-                            "summerImageIn 1.2s cubic-bezier(.2,.8,.2,1) forwards";
+                        if (summerImage) {
+
+                            summerImage.style.animation =
+                                "summerImageIn 1.2s cubic-bezier(.2,.8,.2,1) forwards";
+
+                        }
 
                     }
 
@@ -510,9 +501,11 @@ const observer =
             );
 
         },
+
         {
             threshold: .35
         }
+
     );
 
 
@@ -523,3 +516,93 @@ if (summerSection) {
     );
 
 }
+
+
+/* =========================================================
+   MADE FOR SUMMER CARD REVEAL
+========================================================= */
+
+const gallerySection =
+    document.getElementById(
+        "summerGallery"
+    );
+
+
+const galleryCards =
+    document.querySelectorAll(
+        ".summerCard"
+    );
+
+
+const galleryObserver =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        galleryCards.forEach(
+                            (card, index) => {
+
+                                setTimeout(
+                                    () => {
+
+                                        card.classList.add(
+                                            "visible"
+                                        );
+
+                                    },
+                                    index * 150
+                                );
+
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .2
+        }
+
+    );
+
+
+if (gallerySection) {
+
+    galleryObserver.observe(
+        gallerySection
+    );
+
+}
+
+
+/* =========================================================
+   CARD CLICK EFFECT
+========================================================= */
+
+galleryCards.forEach(
+    (card) => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                card.classList.toggle(
+                    "selected"
+                );
+
+            }
+        );
+
+    }
+);

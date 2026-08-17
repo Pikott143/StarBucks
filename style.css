@@ -15,14 +15,19 @@ html {
 
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background: #071a12;
+
     overflow: hidden;
 }
 
 
 /* =========================================================
-   SCROLL SNAP
+   MAIN SCROLL CONTAINER
 ========================================================= */
 
 #page {
@@ -44,6 +49,10 @@ body {
 }
 
 
+/* =========================================================
+   NORMAL FULL SCREEN SECTIONS
+========================================================= */
+
 .pageSection {
 
     height: 100vh;
@@ -58,7 +67,6 @@ body {
 
     overflow: hidden;
 }
-
 
 
 /* =========================================================
@@ -108,9 +116,12 @@ body {
     visibility: hidden;
 
     pointer-events: none;
-
 }
 
+
+/* =========================================================
+   LOADING GLOW
+========================================================= */
 
 .loadingGlow {
 
@@ -122,11 +133,15 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.08);
+    background:
+        rgba(255,255,255,.08);
 
     filter: blur(80px);
 
-    animation: loadingGlow 4s ease-in-out infinite;
+    animation:
+        loadingGlow 4s
+        ease-in-out
+        infinite;
 }
 
 
@@ -134,12 +149,18 @@ body {
 
     0%,
     100% {
-        transform: scale(.8);
+
+        transform:
+            scale(.8);
+
         opacity: .4;
     }
 
     50% {
-        transform: scale(1.2);
+
+        transform:
+            scale(1.2);
+
         opacity: .8;
     }
 
@@ -168,10 +189,12 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.8);
+    background:
+        rgba(255,255,255,.8);
 
     box-shadow:
-        0 0 8px rgba(255,255,255,.8);
+        0 0 8px
+        rgba(255,255,255,.8);
 
     opacity: 0;
 
@@ -196,7 +219,6 @@ body {
             scale(1);
 
         opacity: 0;
-
     }
 
     25% {
@@ -214,11 +236,9 @@ body {
             scale(.2);
 
         opacity: 0;
-
     }
 
 }
-
 
 
 /* =========================================================
@@ -261,8 +281,8 @@ body {
 
     transition:
         opacity 1.2s ease,
-        transform 1.5s cubic-bezier(.2,.8,.2,1);
-
+        transform 1.5s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 
@@ -273,9 +293,7 @@ body {
     transform:
         scale(1)
         rotate(0deg);
-
 }
-
 
 
 /* =========================================================
@@ -296,7 +314,8 @@ body {
 
     opacity: 0;
 
-    transform: translateY(20px);
+    transform:
+        translateY(20px);
 
     transition:
         opacity 1s ease,
@@ -308,8 +327,8 @@ body {
 
     opacity: 1;
 
-    transform: translateY(0);
-
+    transform:
+        translateY(0);
 }
 
 
@@ -322,7 +341,6 @@ body {
     font-weight: 700;
 
     letter-spacing: 3px;
-
 }
 
 
@@ -334,7 +352,8 @@ body {
 
     margin: 10px auto;
 
-    background: rgba(255,255,255,.7);
+    background:
+        rgba(255,255,255,.7);
 }
 
 
@@ -346,7 +365,6 @@ body {
 
     opacity: .7;
 }
-
 
 
 /* =========================================================
@@ -375,9 +393,7 @@ body {
 
 
 .backgroundVideo.active {
-
     opacity: 1;
-
 }
 
 
@@ -408,9 +424,7 @@ body {
             rgba(0,0,0,.1),
             rgba(0,0,0,.35)
         );
-
 }
-
 
 
 /* =========================================================
@@ -422,6 +436,7 @@ body {
     position: absolute;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
@@ -430,7 +445,9 @@ body {
 
     padding:
         20px
-        42px;
+        42px
+        20px
+        8%;
 
     z-index: 10;
 
@@ -442,6 +459,22 @@ body {
 }
 
 
+/* =========================================================
+   NAV LOGO
+========================================================= */
+
+.navLogo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    flex-shrink: 0;
+}
+
+
 .navLogo img {
 
     width: 65px;
@@ -450,8 +483,13 @@ body {
 
     object-fit: contain;
 
+    display: block;
 }
 
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
 
 .navLinks {
 
@@ -483,10 +521,14 @@ body {
 
     opacity: .75;
 
-    transform: translateY(-2px);
-
+    transform:
+        translateY(-2px);
 }
 
+
+/* =========================================================
+   SIGN IN
+========================================================= */
 
 .signIn {
 
@@ -497,10 +539,13 @@ body {
     border-radius: 30px;
 
     padding:
-        11px
-        28px;
+        11px 28px;
 }
 
+
+/* =========================================================
+   JOIN NOW
+========================================================= */
 
 .joinNow {
 
@@ -511,10 +556,8 @@ body {
     border-radius: 30px;
 
     padding:
-        12px
-        30px;
+        12px 30px;
 }
-
 
 
 /* =========================================================
@@ -536,20 +579,22 @@ body {
     align-items: center;
 
     padding-left: 8%;
-
 }
 
 
 .heroContent {
 
-    max-width: 650px;
+    max-width: 550px;
 
     color: white;
 
-    padding-top: 80px;
-
+    padding-top: 150px;
 }
 
+
+/* =========================================================
+   WELCOME
+========================================================= */
 
 .smallText {
 
@@ -561,17 +606,28 @@ body {
 
     margin-bottom: 20px;
 
-    opacity: .85;
+    opacity: .9;
+
+    color: white;
+
+    text-shadow:
+        0 2px 12px
+        rgba(0,0,0,.8);
 }
 
 
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
 .hero h1 {
 
-    font-size: clamp(
-        60px,
-        7vw,
-        120px
-    );
+    font-size:
+        clamp(
+            70px,
+            5.5vw,
+            125px
+        );
 
     line-height: .88;
 
@@ -579,11 +635,19 @@ body {
 
     letter-spacing: -4px;
 
+    color: white;
+
+    margin: 0;
+
     text-shadow:
         0 4px 25px
-        rgba(0,0,0,.45);
+        rgba(0,0,0,.55);
 }
 
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
 
 .heroDescription {
 
@@ -595,9 +659,18 @@ body {
 
     font-size: 16px;
 
-    color: rgba(255,255,255,.9);
+    color:
+        rgba(255,255,255,.92);
+
+    text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.7);
 }
 
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
 
 .heroButtons {
 
@@ -615,8 +688,7 @@ body {
     text-decoration: none;
 
     padding:
-        13px
-        25px;
+        13px 25px;
 
     border-radius: 30px;
 
@@ -651,10 +723,9 @@ body {
 .primaryButton:hover,
 .secondaryButton:hover {
 
-    transform: translateY(-3px);
-
+    transform:
+        translateY(-3px);
 }
-
 
 
 /* =========================================================
@@ -669,7 +740,8 @@ body {
 
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index: 10;
 
@@ -723,17 +795,22 @@ body {
 
     background: white;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     animation:
-        scrollDot 1.5s infinite;
+        scrollDot
+        1.5s
+        infinite;
 }
 
 
 @keyframes scrollDot {
 
     0% {
+
         opacity: 0;
+
         transform:
             translate(-50%,0);
     }
@@ -743,7 +820,9 @@ body {
     }
 
     100% {
+
         opacity: 0;
+
         transform:
             translate(-50%,10px);
     }
@@ -757,7 +836,6 @@ body {
 
     letter-spacing: 3px;
 }
-
 
 
 /* =========================================================
@@ -775,6 +853,10 @@ body {
     justify-content: center;
 }
 
+
+/* =========================================================
+   SUMMER BACKGROUND
+========================================================= */
 
 .summerBackground {
 
@@ -794,11 +876,16 @@ body {
         brightness(.35)
         saturate(.8);
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 
     z-index: 0;
 }
 
+
+/* =========================================================
+   SUMMER OVERLAY
+========================================================= */
 
 .summerOverlay {
 
@@ -817,7 +904,6 @@ body {
 
     z-index: 1;
 }
-
 
 
 /* =========================================================
@@ -843,9 +929,7 @@ body {
     align-items: center;
 
     gap: 8%;
-
 }
-
 
 
 /* =========================================================
@@ -870,11 +954,6 @@ body {
         scale(.92);
 
     opacity: 0;
-
-    animation:
-        summerImageIn 1.2s
-        cubic-bezier(.2,.8,.2,1)
-        forwards;
 }
 
 
@@ -887,7 +966,6 @@ body {
     display: block;
 
     object-fit: cover;
-
 }
 
 
@@ -900,7 +978,6 @@ body {
         transform:
             translateX(-80px)
             scale(.85);
-
     }
 
     to {
@@ -910,11 +987,9 @@ body {
         transform:
             translateX(0)
             scale(1);
-
     }
 
 }
-
 
 
 /* =========================================================
@@ -928,12 +1003,8 @@ body {
     max-width: 650px;
 
     padding-right: 20px;
-
 }
 
-
-
-/* Small title */
 
 .summerEyebrow {
 
@@ -945,11 +1016,6 @@ body {
 
     margin-bottom: 22px;
 
-    /*
-       Bright gold/cream so it stays
-       visible on both dark/light backgrounds.
-    */
-
     color: #f4d98b;
 
     text-shadow:
@@ -958,20 +1024,16 @@ body {
 }
 
 
-
-/* =========================================================
-   SUMMER TITLE
-========================================================= */
-
 .summerContent h2 {
 
     margin: 0;
 
-    font-size: clamp(
-        70px,
-        8vw,
-        145px
-    );
+    font-size:
+        clamp(
+            70px,
+            8vw,
+            145px
+        );
 
     line-height: .78;
 
@@ -981,19 +1043,16 @@ body {
 
     color: #fff8df;
 
-    /*
-       VERY STRONG TEXT SHADOW
-       para klaro bisan mag-light
-       or dark ang background.
-    */
-
     text-shadow:
 
-        0 3px 0 rgba(0,0,0,.8),
+        0 3px 0
+        rgba(0,0,0,.8),
 
-        0 7px 20px rgba(0,0,0,.8),
+        0 7px 20px
+        rgba(0,0,0,.8),
 
-        0 15px 45px rgba(0,0,0,.75);
+        0 15px 45px
+        rgba(0,0,0,.75);
 }
 
 
@@ -1019,19 +1078,8 @@ body {
     font-style: italic;
 
     color: #f4d98b;
-
-    text-shadow:
-
-        0 3px 0 rgba(0,0,0,.85),
-
-        0 8px 25px rgba(0,0,0,.9);
 }
 
-
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
 
 .summerDescription {
 
@@ -1047,11 +1095,6 @@ body {
 
     color: #fff;
 
-    /*
-       Dark transparent backdrop behind
-       text for maximum readability.
-    */
-
     background:
         rgba(0,0,0,.35);
 
@@ -1060,10 +1103,10 @@ body {
         #f4d98b;
 
     padding:
-        15px
-        20px;
+        15px 20px;
 
-    border-radius: 0 12px 12px 0;
+    border-radius:
+        0 12px 12px 0;
 
     text-shadow:
         0 2px 8px
@@ -1072,7 +1115,6 @@ body {
     backdrop-filter:
         blur(5px);
 }
-
 
 
 /* =========================================================
@@ -1092,8 +1134,7 @@ body {
     margin-top: 38px;
 
     padding:
-        17px
-        40px;
+        17px 40px;
 
     border-radius: 40px;
 
@@ -1114,10 +1155,6 @@ body {
     background:
         rgba(0,0,0,.35);
 
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.35);
-
     transition:
         .35s ease;
 }
@@ -1131,16 +1168,11 @@ body {
 
     transform:
         translateY(-4px);
-
-    box-shadow:
-        0 15px 40px
-        rgba(244,217,139,.3);
 }
 
 
-
 /* =========================================================
-   BACK TO TOP
+   BACK TO TOP — SUMMER
 ========================================================= */
 
 .summerScroll {
@@ -1163,7 +1195,8 @@ body {
 
     opacity: .7;
 
-    transition: .3s ease;
+    transition:
+        .3s ease;
 }
 
 
@@ -1176,58 +1209,720 @@ body {
 }
 
 
+/* =========================================================
+   =========================================================
+   SECTION 3 — MADE FOR SUMMER
+   =========================================================
+========================================================= */
+
+.summerGallerySection {
+
+    position: relative;
+
+    width: 100%;
+
+    /*
+       IMPORTANT:
+       DILI NATON 100VH.
+       Mas taas siya para dili maputol ang images.
+    */
+
+    min-height: 125vh;
+
+    padding:
+        90px
+        6%
+        110px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d3525 0%,
+            #082b1d 45%,
+            #031810 100%
+        );
+
+    overflow: hidden;
+}
+
 
 /* =========================================================
-   RESPONSIVE
+   GALLERY BACKGROUND
+========================================================= */
+
+.galleryBackground {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(244,217,139,.08),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(30,100,65,.20),
+            transparent 40%
+        );
+
+    z-index: 0;
+}
+
+
+.galleryOverlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2,18,12,.15),
+            rgba(2,18,12,.35)
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   GALLERY CONTAINER
+========================================================= */
+
+.galleryContainer {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    max-width: 1550px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   GALLERY HEADER
+========================================================= */
+
+.galleryHeader {
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+.galleryEyebrow {
+
+    margin:
+        0 0 18px;
+
+    color: #f4d98b;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 7px;
+
+    text-transform: uppercase;
+}
+
+
+.galleryTitle {
+
+    margin: 0;
+
+    color: #fffdf4;
+
+    font-size:
+        clamp(
+            55px,
+            6vw,
+            105px
+        );
+
+    line-height: .9;
+
+    font-weight: 900;
+
+    letter-spacing: -5px;
+}
+
+
+.galleryTitle em {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: 500;
+
+    color: #f4d98b;
+
+    letter-spacing: -4px;
+}
+
+
+/* =========================================================
+   GALLERY GRID
+========================================================= */
+
+.summerGallery {
+
+    display: grid;
+
+    grid-template-columns:
+        1.65fr
+        1fr;
+
+    grid-template-rows:
+        1fr
+        1fr;
+
+    gap: 28px;
+
+    min-height: 700px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.summerCard {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 32px;
+
+    background: #123c2a;
+
+    cursor: pointer;
+
+    isolation: isolate;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28);
+
+    transition:
+        transform .6s
+        cubic-bezier(.2,.8,.2,1),
+        box-shadow .6s ease;
+}
+
+
+/* =========================================================
+   LARGE CARD
+========================================================= */
+
+.summerCardLarge {
+
+    grid-column: 1;
+
+    grid-row:
+        1 / span 2;
+
+    min-height: 700px;
+}
+
+
+/* =========================================================
+   TOP RIGHT
+========================================================= */
+
+.summerCardTop {
+
+    grid-column: 2;
+
+    grid-row: 1;
+
+    min-height: 335px;
+}
+
+
+/* =========================================================
+   BOTTOM RIGHT
+========================================================= */
+
+.summerCardBottom {
+
+    grid-column: 2;
+
+    grid-row: 2;
+
+    min-height: 335px;
+}
+
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.summerCard img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .9s
+        cubic-bezier(.2,.8,.2,1),
+        filter .6s ease;
+}
+
+
+/* =========================================================
+   CARD OVERLAY
+========================================================= */
+
+.cardOverlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.03) 20%,
+            rgba(0,0,0,.08) 35%,
+            rgba(0,0,0,.82) 100%
+        );
+
+    opacity: .75;
+
+    transition:
+        opacity .5s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.summerCard:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 35px 90px
+        rgba(0,0,0,.45);
+}
+
+
+.summerCard:hover img {
+
+    transform:
+        scale(1.07);
+
+    filter:
+        brightness(.82)
+        saturate(1.08);
+}
+
+
+.summerCard:hover .cardOverlay {
+
+    opacity: .95;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.cardNumber {
+
+    position: absolute;
+
+    top: 28px;
+
+    right: 28px;
+
+    z-index: 3;
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.65);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    backdrop-filter:
+        blur(8px);
+
+    background:
+        rgba(0,0,0,.12);
+
+    transition:
+        background .4s ease,
+        transform .4s ease;
+}
+
+
+.summerCard:hover .cardNumber {
+
+    background:
+        rgba(244,217,139,.18);
+
+    transform:
+        rotate(8deg)
+        scale(1.05);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.cardContent {
+
+    position: absolute;
+
+    left: 38px;
+
+    right: 90px;
+
+    bottom: 35px;
+
+    z-index: 3;
+
+    color: white;
+}
+
+
+.cardContent h3 {
+
+    margin:
+        0 0 10px;
+
+    font-size:
+        clamp(
+            28px,
+            3vw,
+            55px
+        );
+
+    line-height: .95;
+
+    font-weight: 900;
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 4px 20px
+        rgba(0,0,0,.65);
+}
+
+
+.cardContent p {
+
+    margin: 0;
+
+    max-width: 600px;
+
+    font-size: 16px;
+
+    line-height: 1.55;
+
+    font-weight: 500;
+
+    color:
+        rgba(255,255,255,.92);
+
+    text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.7);
+}
+
+
+/* =========================================================
+   LARGE CARD TITLE
+========================================================= */
+
+.summerCardLarge
+.cardContent
+h3 {
+
+    font-size:
+        clamp(
+            38px,
+            4vw,
+            70px
+        );
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.cardArrow {
+
+    position: absolute;
+
+    right: 28px;
+
+    bottom: 28px;
+
+    z-index: 4;
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.65);
+
+    border-radius: 50%;
+
+    color: #fff;
+
+    font-size: 22px;
+
+    background:
+        rgba(0,0,0,.12);
+
+    backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform .4s ease,
+        background .4s ease,
+        color .4s ease;
+}
+
+
+.summerCard:hover .cardArrow {
+
+    transform:
+        rotate(45deg)
+        scale(1.08);
+
+    background: #f4d98b;
+
+    color: #123322;
+
+    border-color:
+        #f4d98b;
+}
+
+
+/* =========================================================
+   GALLERY BACK TOP
+========================================================= */
+
+.galleryBackTop {
+
+    display: block;
+
+    width: fit-content;
+
+    margin:
+        55px
+        0
+        0
+        auto;
+
+    color:
+        rgba(255,255,255,.75);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    transition:
+        transform .3s ease,
+        color .3s ease;
+}
+
+
+.galleryBackTop:hover {
+
+    color: #f4d98b;
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   GALLERY CARD ANIMATION
+========================================================= */
+
+.summerCard {
+
+    opacity: 0;
+
+    transform:
+        translateY(60px);
+}
+
+
+.summerCardLarge {
+
+    animation:
+        galleryCardIn 1s
+        .1s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+.summerCardTop {
+
+    animation:
+        galleryCardIn 1s
+        .25s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+.summerCardBottom {
+
+    animation:
+        galleryCardIn 1s
+        .4s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes galleryCardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(60px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
 ========================================================= */
 
 @media (max-width: 1000px) {
 
+
     .navbar {
 
         padding:
-            15px 25px;
+            15px
+            25px
+            15px
+            6%;
+    }
 
+
+    .navLogo img {
+
+        width: 58px;
+
+        height: 58px;
     }
 
 
     .navLinks {
 
         gap: 15px;
-
     }
 
 
     .navLinks a {
 
         font-size: 12px;
-
     }
 
 
     .hero {
 
         padding-left: 6%;
+    }
 
+
+    .heroContent {
+
+        padding-top: 90px;
     }
 
 
     .hero h1 {
 
         font-size: 65px;
-
     }
 
 
     .summerContainer {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 25px;
 
         width: 85%;
-
     }
 
 
@@ -1236,7 +1931,6 @@ body {
         max-width: 600px;
 
         margin: auto;
-
     }
 
 
@@ -1247,33 +1941,85 @@ body {
         margin: auto;
 
         text-align: center;
-
     }
 
 
     .summerDescription {
 
         text-align: left;
-
     }
 
 
     .summerContent h2 {
 
         font-size: 80px;
+    }
 
+
+
+    /* ============================
+       GALLERY TABLET
+    ============================ */
+
+    .summerGallerySection {
+
+        min-height: auto;
+
+        padding:
+            80px
+            5%
+            100px;
+    }
+
+
+    .summerGallery {
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows: auto;
+
+        min-height: auto;
+
+        gap: 25px;
+    }
+
+
+    .summerCardLarge,
+    .summerCardTop,
+    .summerCardBottom {
+
+        grid-column: auto;
+
+        grid-row: auto;
+
+        min-height: 500px;
+    }
+
+
+    .summerCardLarge {
+
+        min-height: 600px;
+    }
+
+
+    .galleryHeader {
+
+        margin-bottom: 40px;
     }
 
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 650px) {
+
 
     #page {
 
         scroll-snap-type: y mandatory;
-
     }
 
 
@@ -1282,8 +2028,10 @@ body {
         height: 75px;
 
         padding:
-            10px 18px;
-
+            10px
+            18px
+            10px
+            5%;
     }
 
 
@@ -1292,21 +2040,18 @@ body {
         width: 48px;
 
         height: 48px;
-
     }
 
 
     .navLinks {
 
         gap: 8px;
-
     }
 
 
     .navLinks a {
 
         font-size: 9px;
-
     }
 
 
@@ -1314,24 +2059,20 @@ body {
     .joinNow {
 
         padding:
-            8px
-            12px;
-
+            8px 12px;
     }
 
 
     .hero {
 
         padding:
-            0 25px;
-
+            0 5%;
     }
 
 
     .heroContent {
 
         padding-top: 80px;
-
     }
 
 
@@ -1341,6 +2082,7 @@ body {
 
         letter-spacing: 3px;
 
+        margin-bottom: 15px;
     }
 
 
@@ -1349,28 +2091,30 @@ body {
         font-size: 48px;
 
         letter-spacing: -2px;
-
     }
 
 
     .heroDescription {
 
         font-size: 13px;
+    }
 
+
+    .heroButtons {
+
+        flex-wrap: wrap;
     }
 
 
     .summerContainer {
 
         width: 90%;
-
     }
 
 
     .summerImageWrapper {
 
         border-radius: 18px;
-
     }
 
 
@@ -1379,7 +2123,6 @@ body {
         font-size: 55px;
 
         letter-spacing: -3px;
-
     }
 
 
@@ -1388,7 +2131,6 @@ body {
         font-size: 8px;
 
         letter-spacing: 4px;
-
     }
 
 
@@ -1399,7 +2141,6 @@ body {
         line-height: 1.6;
 
         margin-top: 20px;
-
     }
 
 
@@ -1408,11 +2149,9 @@ body {
         min-width: 170px;
 
         padding:
-            13px
-            25px;
+            13px 25px;
 
         margin-top: 20px;
-
     }
 
 
@@ -1421,7 +2160,138 @@ body {
         right: 20px;
 
         bottom: 20px;
+    }
 
+
+
+    /* ============================
+       GALLERY MOBILE
+    ============================ */
+
+    .summerGallerySection {
+
+        padding:
+            70px
+            18px
+            80px;
+    }
+
+
+    .galleryEyebrow {
+
+        font-size: 9px;
+
+        letter-spacing: 4px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .galleryTitle {
+
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .galleryTitle em {
+
+        letter-spacing: -2px;
+    }
+
+
+    .summerGallery {
+
+        gap: 18px;
+    }
+
+
+    .summerCardLarge,
+    .summerCardTop,
+    .summerCardBottom {
+
+        min-height: 380px;
+
+        border-radius: 22px;
+    }
+
+
+    .summerCardLarge {
+
+        min-height: 480px;
+    }
+
+
+    .cardNumber {
+
+        top: 18px;
+
+        right: 18px;
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 10px;
+    }
+
+
+    .cardContent {
+
+        left: 22px;
+
+        right: 70px;
+
+        bottom: 22px;
+    }
+
+
+    .cardContent h3 {
+
+        font-size: 29px;
+
+        letter-spacing: -1px;
+    }
+
+
+    .summerCardLarge
+    .cardContent
+    h3 {
+
+        font-size: 38px;
+    }
+
+
+    .cardContent p {
+
+        font-size: 13px;
+
+        line-height: 1.45;
+    }
+
+
+    .cardArrow {
+
+        right: 18px;
+
+        bottom: 18px;
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 17px;
+    }
+
+
+    .galleryBackTop {
+
+        margin-top: 40px;
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
     }
 
 }

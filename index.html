@@ -12,7 +12,6 @@
 
     <title>StarBucks</title>
 
-    <!-- Browser Tab Icon -->
     <link
         rel="icon"
         type="image/png"
@@ -30,35 +29,195 @@
 <body>
 
 
-    <!-- =====================================================
-         LOADING SCREEN
-    ====================================================== -->
+<!-- =====================================================
+     LOADING SCREEN
+====================================================== -->
 
-    <div id="loadingScreen">
+<div id="loadingScreen">
 
-        <div class="loadingGlow"></div>
+    <div class="loadingGlow"></div>
 
-        <div id="particles"></div>
+    <div id="particles"></div>
 
-        <div class="loadingLogoWrapper">
+    <div class="loadingLogoWrapper">
+
+        <img
+            src="images/1.png"
+            alt="StarBucks Logo"
+            id="loadingLogo"
+        >
+
+    </div>
+
+    <div class="loadingBrand">
+
+        <span>StarBucks</span>
+
+        <div class="loadingLine"></div>
+
+        <small>
+            COFFEE EXPERIENCE
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN PAGE
+====================================================== -->
+
+<main id="page">
+
+
+<!-- =====================================================
+     SECTION 1 — HOME
+====================================================== -->
+
+<section
+    class="pageSection landingSection"
+    id="homePage"
+>
+
+
+    <!-- BACKGROUND VIDEO 1 -->
+
+    <video
+        id="backgroundVideo1"
+        class="backgroundVideo active"
+        muted
+        playsinline
+        preload="auto"
+    ></video>
+
+
+    <!-- BACKGROUND VIDEO 2 -->
+
+    <video
+        id="backgroundVideo2"
+        class="backgroundVideo"
+        muted
+        playsinline
+        preload="auto"
+    ></video>
+
+
+    <!-- VIDEO OVERLAY -->
+
+    <div class="videoOverlay"></div>
+
+
+
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="#homePage"
+            class="navLogo"
+        >
 
             <img
                 src="images/1.png"
                 alt="StarBucks Logo"
-                id="loadingLogo"
             >
 
-        </div>
+        </a>
 
-        <div class="loadingBrand">
 
-            <span>StarBucks</span>
 
-            <div class="loadingLine"></div>
+        <!-- NAV LINKS -->
 
-            <small>
-                COFFEE EXPERIENCE
-            </small>
+        <nav class="navLinks">
+
+            <a href="#summer">
+                MENU
+            </a>
+
+            <a href="#summerGallery">
+                MERCHANDISE
+            </a>
+
+            <a href="#summerGallery">
+                REWARDS
+            </a>
+
+            <a
+                href="#"
+                class="signIn"
+            >
+                Sign in
+            </a>
+
+            <a
+                href="#"
+                class="joinNow"
+            >
+                Join Now
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <div class="hero">
+
+        <div class="heroContent">
+
+
+            <p class="smallText">
+                WELCOME TO YOUR COFFEE EXPERIENCE
+            </p>
+
+
+            <h1>
+                GOOD COFFEE.<br>
+                GOOD MOMENTS.
+            </h1>
+
+
+            <p class="heroDescription">
+                Discover handcrafted coffee,
+                delicious moments, and a place
+                made for everyone.
+            </p>
+
+
+            <div class="heroButtons">
+
+
+                <a
+                    href="#summer"
+                    class="primaryButton"
+                >
+                    ORDER NOW
+                </a>
+
+
+                <a
+                    href="#summer"
+                    class="secondaryButton"
+                >
+                    EXPLORE MENU
+                </a>
+
+
+            </div>
+
 
         </div>
 
@@ -66,286 +225,343 @@
 
 
 
-    <!-- =====================================================
-         MAIN SCROLL CONTAINER
-    ====================================================== -->
+    <!-- SCROLL INDICATOR -->
 
-    <main id="page">
+    <a
+        href="#summer"
+        class="scrollIndicator"
+    >
+
+        <span></span>
+
+        <small>
+            SCROLL TO EXPLORE
+        </small>
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SECTION 2 — SUMMER CLUB
+====================================================== -->
+
+<section
+    class="pageSection summerSection"
+    id="summer"
+>
+
+
+    <div class="summerBackground"></div>
+
+    <div class="summerOverlay"></div>
+
+
+
+    <div class="summerContainer">
+
+
+        <!-- IMAGE -->
+
+        <div class="summerImageWrapper">
+
+            <img
+                src="images/2.png"
+                alt="StarBucks Summer Club"
+                class="summerImage"
+            >
+
+        </div>
+
+
+
+        <!-- TEXT -->
+
+        <div class="summerContent">
+
+
+            <p class="summerEyebrow">
+                STARBUCKS SUMMER CLUB
+            </p>
+
+
+            <h2>
+
+                <span>
+                    Summer
+                </span>
+
+                <em>
+                    is here.
+                </em>
+
+            </h2>
+
+
+            <p class="summerDescription">
+
+                As summer reaches its peak,
+                Starbucks Summer Club turns up
+                electric vibes with brighter bursts,
+                bolder flavors and seasonal
+                surprises — doubling down on the joy.
+
+            </p>
+
+
+            <a
+                href="#summerGallery"
+                class="summerButton"
+            >
+                EXPLORE
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- SCROLL DOWN -->
+
+    <a
+        href="#homePage"
+        class="summerScroll"
+    >
+
+        ↑
+        BACK TO TOP
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SECTION 3 — MADE FOR SUMMER
+====================================================== -->
+
+<section
+    class="summerGallerySection"
+    id="summerGallery"
+>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="galleryBackground"></div>
+
+    <div class="galleryOverlay"></div>
+
+
+
+    <div class="galleryContainer">
 
 
         <!-- =================================================
-             SECTION 1 — LANDING PAGE
+             HEADER
         ================================================== -->
 
-        <section
-            class="pageSection landingSection"
-            id="homePage"
-        >
+        <div class="galleryHeader">
 
 
-            <!-- Background Video 1 -->
-
-            <video
-                id="backgroundVideo1"
-                class="backgroundVideo active"
-                muted
-                playsinline
-                preload="auto"
-            ></video>
+            <p class="galleryEyebrow">
+                STARBUCKS SUMMER CLUB
+            </p>
 
 
-            <!-- Background Video 2 -->
+            <h2 class="galleryTitle">
 
-            <video
-                id="backgroundVideo2"
-                class="backgroundVideo"
-                muted
-                playsinline
-                preload="auto"
-            ></video>
+                Made for
+                <em>summer.</em>
+
+            </h2>
 
 
-            <!-- Dark overlay -->
-
-            <div class="videoOverlay"></div>
+        </div>
 
 
-            <!-- NAVBAR -->
 
-            <header class="navbar">
+        <!-- =================================================
+             IMAGE GALLERY
+        ================================================== -->
+
+        <div class="summerGallery">
 
 
-                <!-- LOGO -->
+            <!-- =================================================
+                 CARD 01 — 4.PNG
+            ================================================== -->
 
-                <a
-                    href="#"
-                    class="navLogo"
+            <article
+                class="summerCard summerCardLarge"
+            >
+
+
+                <img
+                    src="images/4.png"
+                    alt="Summer Best Bites"
                 >
 
-                    <img
-                        src="images/1.png"
-                        alt="StarBucks Logo"
-                    >
 
-                </a>
+                <div class="cardOverlay"></div>
 
 
-
-                <!-- NAVIGATION -->
-
-                <nav class="navLinks">
-
-                    <a href="#summer">
-                        MENU
-                    </a>
-
-                    <a href="#summer">
-                        MERCHANDISE
-                    </a>
-
-                    <a href="#summer">
-                        REWARDS
-                    </a>
-
-                    <a
-                        href="#"
-                        class="signIn"
-                    >
-                        Sign in
-                    </a>
-
-                    <a
-                        href="#"
-                        class="joinNow"
-                    >
-                        Join Now
-                    </a>
-
-                </nav>
+                <div class="cardNumber">
+                    01
+                </div>
 
 
-            </header>
+                <div class="cardContent">
 
+                    <h3>
+                        Summer Best Bites
+                    </h3>
 
-
-            <!-- HERO -->
-
-            <div class="hero">
-
-                <div class="heroContent">
-
-
-                    <p class="smallText">
-                        WELCOME TO YOUR COFFEE EXPERIENCE
+                    <p>
+                        Light, crave-able, and made to pair
+                        with every summer sip
                     </p>
-
-
-                    <h1>
-                        GOOD COFFEE.<br>
-                        GOOD MOMENTS.
-                    </h1>
-
-
-                    <p class="heroDescription">
-                        Discover handcrafted coffee,
-                        delicious moments, and a place
-                        made for everyone.
-                    </p>
-
-
-                    <div class="heroButtons">
-
-
-                        <a
-                            href="#summer"
-                            class="primaryButton"
-                        >
-                            ORDER NOW
-                        </a>
-
-
-                        <a
-                            href="#summer"
-                            class="secondaryButton"
-                        >
-                            EXPLORE MENU
-                        </a>
-
-
-                    </div>
-
 
                 </div>
 
-            </div>
+
+                <div class="cardArrow">
+                    ↗
+                </div>
+
+
+            </article>
 
 
 
-            <!-- SCROLL INDICATOR -->
+            <!-- =================================================
+                 CARD 02 — 5.PNG
+            ================================================== -->
 
-            <a
-                href="#summer"
-                class="scrollIndicator"
+            <article
+                class="summerCard summerCardTop"
             >
 
-                <span></span>
 
-                <small>
-                    SCROLL TO EXPLORE
-                </small>
-
-            </a>
+                <img
+                    src="images/5.png"
+                    alt="Taste Like Summer"
+                >
 
 
-        </section>
+                <div class="cardOverlay"></div>
+
+
+                <div class="cardNumber">
+                    02
+                </div>
+
+
+                <div class="cardContent">
+
+                    <h3>
+                        Taste Like Summer
+                    </h3>
+
+                    <p>
+                        Fun, fruity finds to carry you
+                        through the season.
+                    </p>
+
+                </div>
+
+
+                <div class="cardArrow">
+                    ↗
+                </div>
+
+
+            </article>
 
 
 
-        <!-- =================================================
-             SECTION 2 — SUMMER CLUB
-        ================================================== -->
+            <!-- =================================================
+                 CARD 03 — 6.PNG
+            ================================================== -->
 
-        <section
-            class="pageSection summerSection"
-            id="summer"
+            <article
+                class="summerCard summerCardBottom"
+            >
+
+
+                <img
+                    src="images/6.png"
+                    alt="Your Summer In A Cup"
+                >
+
+
+                <div class="cardOverlay"></div>
+
+
+                <div class="cardNumber">
+                    03
+                </div>
+
+
+                <div class="cardContent">
+
+                    <h3>
+                        Your Summer,
+                        <br>
+                        In A Cup
+                    </h3>
+
+                    <p>
+                        Cool, refreshing favorites for
+                        every carefree moment.
+                    </p>
+
+                </div>
+
+
+                <div class="cardArrow">
+                    ↗
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+
+
+        <!-- BACK TO TOP -->
+
+        <a
+            href="#homePage"
+            class="galleryBackTop"
         >
 
+            ↑ BACK TO TOP
 
-            <!-- Background -->
-
-            <div class="summerBackground"></div>
-
-            <div class="summerOverlay"></div>
+        </a>
 
 
-
-            <!-- CONTENT -->
-
-            <div class="summerContainer">
+    </div>
 
 
-                <!-- IMAGE -->
+</section>
 
-                <div class="summerImageWrapper">
 
-                    <img
-                        src="images/2.png"
-                        alt="StarBucks Summer Club"
-                        class="summerImage"
-                    >
-
-                </div>
+</main>
 
 
 
-                <!-- TEXT -->
-
-                <div class="summerContent">
-
-
-                    <p class="summerEyebrow">
-                        STARBUCKS SUMMER CLUB
-                    </p>
-
-
-                    <h2>
-
-                        <span>Summer</span>
-
-                        <em>
-                            is here.
-                        </em>
-
-                    </h2>
-
-
-                    <p class="summerDescription">
-
-                        As summer reaches its peak,
-                        Starbucks Summer Club turns up
-                        electric vibes with brighter bursts,
-                        bolder flavors and seasonal
-                        surprises — doubling down on the joy.
-
-                    </p>
-
-
-                    <a
-                        href="#"
-                        class="summerButton"
-                    >
-                        EXPLORE
-                    </a>
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- SCROLL DOWN -->
-
-            <a
-                href="#homePage"
-                class="summerScroll"
-            >
-
-                ↑
-                BACK TO TOP
-
-            </a>
-
-
-        </section>
-
-
-    </main>
-
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 
