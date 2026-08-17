@@ -605,4 +605,82 @@ galleryCards.forEach(
         );
 
     }
+); 
+
+/* =========================================================
+   FLOATING MUSIC PLAYER
+========================================================= */
+
+const music =
+    document.getElementById("backgroundMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+let musicPlaying = false;
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+musicButton.addEventListener(
+    "click",
+    async () => {
+
+        if (!musicPlaying) {
+
+            try {
+
+                await music.play();
+
+                musicPlaying = true;
+
+                musicButton.classList.add(
+                    "playing"
+                );
+
+                musicButton.setAttribute(
+                    "aria-label",
+                    "Pause music"
+                );
+
+                musicButton.setAttribute(
+                    "title",
+                    "Pause music"
+                );
+
+            } catch (error) {
+
+                console.log(
+                    "Music could not start:",
+                    error
+                );
+
+            }
+
+        } else {
+
+            music.pause();
+
+            musicPlaying = false;
+
+            musicButton.classList.remove(
+                "playing"
+            );
+
+            musicButton.setAttribute(
+                "aria-label",
+                "Play music"
+            );
+
+            musicButton.setAttribute(
+                "title",
+                "Play music"
+            );
+
+        }
+
+    }
 );

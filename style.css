@@ -2352,4 +2352,248 @@ body {
     right: 35px;
     bottom: 25px;
     z-index: 100;
+} 
+
+/* =========================================================
+   FLOATING MUSIC PLAYER
+========================================================= */
+
+.musicButton {
+
+    position: fixed;
+
+    right: 22px;
+
+    bottom: 22px;
+
+    width: 48px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .95);
+
+    color: #050505;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, .35);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.musicButton:hover {
+
+    transform:
+        scale(1.08);
+
+    background: #f4d98b;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, .45);
+}
+
+
+/* =========================================================
+   MUSIC NOTE
+========================================================= */
+
+.musicIcon {
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    transform:
+        translateY(-1px);
+
+    transition:
+        transform .3s ease;
+}
+
+
+/* =========================================================
+   MUSIC WAVES
+========================================================= */
+
+.musicWave {
+
+    position: absolute;
+
+    bottom: 7px;
+
+    right: 7px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 2px;
+
+    opacity: 0;
+
+    transition:
+        opacity .3s ease;
+}
+
+
+.musicWave i {
+
+    display: block;
+
+    width: 2px;
+
+    height: 5px;
+
+    border-radius: 5px;
+
+    background: #111;
+
+    animation:
+        musicBars .8s
+        ease-in-out
+        infinite;
+}
+
+
+.musicWave i:nth-child(1) {
+
+    height: 5px;
+
+    animation-delay: 0s;
+}
+
+
+.musicWave i:nth-child(2) {
+
+    height: 9px;
+
+    animation-delay: .15s;
+}
+
+
+.musicWave i:nth-child(3) {
+
+    height: 7px;
+
+    animation-delay: .3s;
+}
+
+
+.musicWave i:nth-child(4) {
+
+    height: 11px;
+
+    animation-delay: .45s;
+}
+
+
+@keyframes musicBars {
+
+    0%,
+    100% {
+
+        transform:
+            scaleY(.5);
+    }
+
+    50% {
+
+        transform:
+            scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   PLAYING STATE
+========================================================= */
+
+.musicButton.playing {
+
+    background: #f4d98b;
+
+    animation:
+        musicPulse 2s
+        ease-in-out
+        infinite;
+}
+
+
+.musicButton.playing .musicIcon {
+
+    transform:
+        rotate(-8deg)
+        scale(1.05);
+}
+
+
+.musicButton.playing .musicWave {
+
+    opacity: 1;
+}
+
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 8px 30px
+            rgba(0, 0, 0, .35);
+    }
+
+    50% {
+
+        box-shadow:
+            0 8px 35px
+            rgba(244, 217, 139, .45);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .musicButton {
+
+        width: 43px;
+
+        height: 43px;
+
+        right: 16px;
+
+        bottom: 16px;
+    }
+
+
+    .musicIcon {
+
+        font-size: 22px;
+    }
+
 }
