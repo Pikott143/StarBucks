@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -22,8 +23,9 @@
         href="style.css"
     >
 
+
     <!-- =====================================================
-         REWARDS CSS
+         PREMIUM REWARDS + FOOTER CSS
     ====================================================== -->
 
     <style>
@@ -35,52 +37,186 @@
         .rewardsSection {
             position: relative;
             min-height: 100vh;
-            width: 100%;
-            padding: 110px 6%;
+
+            padding: 120px 6% 100px;
+
             overflow: hidden;
+
+            color: #fff;
 
             background:
                 radial-gradient(
-                    circle at 10% 15%,
-                    rgba(0, 117, 74, .25),
-                    transparent 35%
+                    circle at 10% 10%,
+                    rgba(0, 98, 65, .35),
+                    transparent 32%
                 ),
                 radial-gradient(
-                    circle at 90% 85%,
-                    rgba(196, 164, 91, .15),
-                    transparent 35%
+                    circle at 90% 80%,
+                    rgba(212, 175, 55, .12),
+                    transparent 30%
                 ),
                 linear-gradient(
                     135deg,
-                    #061b13 0%,
-                    #0a2d20 50%,
-                    #03100b 100%
+                    #03140d 0%,
+                    #063d29 48%,
+                    #02100a 100%
                 );
-
-            color: #fff;
 
             scroll-snap-align: start;
         }
 
 
-        .rewardsSection::before {
-            content: "";
+        .rewardsOrb {
             position: absolute;
-            inset: 0;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
 
             background:
-                linear-gradient(
-                    rgba(0,0,0,.05),
-                    rgba(0,0,0,.25)
+                radial-gradient(
+                    circle,
+                    rgba(0, 170, 110, .13),
+                    transparent 70%
                 );
+
+            filter: blur(25px);
+
+            animation:
+                rewardsOrbMove
+                10s
+                ease-in-out
+                infinite
+                alternate;
 
             pointer-events: none;
         }
 
 
+        .rewardsOrb.one {
+            top: -180px;
+            left: -160px;
+        }
+
+
+        .rewardsOrb.two {
+            right: -180px;
+            bottom: -180px;
+
+            animation-delay: -4s;
+        }
+
+
+        @keyframes rewardsOrbMove {
+
+            0% {
+                transform:
+                    translate3d(0,0,0)
+                    scale(1);
+            }
+
+            100% {
+                transform:
+                    translate3d(60px,40px,0)
+                    scale(1.15);
+            }
+
+        }
+
+
+        /* =====================================================
+           REWARDS PARTICLES
+        ====================================================== */
+
+        .rewardParticle {
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            border-radius: 50%;
+
+            background: #d8bb72;
+
+            opacity: .45;
+
+            animation:
+                rewardParticleFloat
+                6s
+                ease-in-out
+                infinite;
+        }
+
+
+        .rewardParticle:nth-of-type(1) {
+            top: 18%;
+            left: 18%;
+        }
+
+
+        .rewardParticle:nth-of-type(2) {
+            top: 34%;
+            left: 82%;
+
+            animation-delay: 1s;
+        }
+
+
+        .rewardParticle:nth-of-type(3) {
+            top: 70%;
+            left: 12%;
+
+            animation-delay: 2s;
+        }
+
+
+        .rewardParticle:nth-of-type(4) {
+            top: 78%;
+            left: 75%;
+
+            animation-delay: 3s;
+        }
+
+
+        .rewardParticle:nth-of-type(5) {
+            top: 50%;
+            left: 50%;
+
+            animation-delay: 4s;
+        }
+
+
+        @keyframes rewardParticleFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    scale(1);
+
+                opacity: .2;
+            }
+
+            50% {
+                transform:
+                    translateY(-25px)
+                    scale(1.8);
+
+                opacity: .8;
+            }
+
+        }
+
+
+        /* =====================================================
+           REWARDS CONTAINER
+        ====================================================== */
+
         .rewardsContainer {
             position: relative;
-            z-index: 2;
+
+            z-index: 5;
 
             width: 100%;
             max-width: 1250px;
@@ -90,28 +226,29 @@
 
 
         /* =====================================================
-           HEADER
+           REWARDS HEADER
         ====================================================== */
 
         .rewardsHeader {
-            text-align: center;
-
             max-width: 800px;
 
             margin:
-                0 auto 60px;
+                0 auto 55px;
+
+            text-align: center;
         }
 
 
         .rewardsEyebrow {
-            margin-bottom: 18px;
+            margin: 0 0 18px;
 
-            font-size: 11px;
-            font-weight: 800;
+            color: #d8bb72;
+
+            font-size: 10px;
+
+            font-weight: 900;
 
             letter-spacing: 5px;
-
-            color: #d6b46a;
         }
 
 
@@ -119,47 +256,48 @@
             margin: 0;
 
             font-size:
-                clamp(48px, 7vw, 92px);
+                clamp(48px, 7vw, 94px);
 
-            line-height: .92;
+            line-height: .9;
 
-            letter-spacing: -4px;
+            letter-spacing: -5px;
 
             font-weight: 900;
         }
 
 
-        .rewardsTitle span {
-            display: block;
-        }
-
-
         .rewardsTitle em {
-            font-family: Georgia, serif;
+            display: block;
+
+            color: #d8bb72;
+
+            font-family:
+                Georgia,
+                serif;
 
             font-weight: 400;
 
-            color: #d6b46a;
+            letter-spacing: -3px;
         }
 
 
-        .rewardsDescription {
-            max-width: 650px;
+        .rewardsIntro {
+            max-width: 620px;
 
             margin:
                 25px auto 0;
 
             color:
-                rgba(255,255,255,.68);
+                rgba(255,255,255,.66);
 
-            font-size: 15px;
+            font-size: 14px;
 
             line-height: 1.8;
         }
 
 
         /* =====================================================
-           STAR BALANCE
+           BALANCE
         ====================================================== */
 
         .rewardsBalance {
@@ -168,70 +306,101 @@
             align-items: center;
             justify-content: space-between;
 
-            gap: 30px;
-
-            margin-bottom: 35px;
+            gap: 25px;
 
             padding: 25px 30px;
 
-            border-radius: 24px;
-
-            background:
-                rgba(255,255,255,.07);
+            margin-bottom: 28px;
 
             border:
                 1px solid
                 rgba(255,255,255,.12);
 
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,255,255,.10),
+                    rgba(255,255,255,.035)
+                );
+
             backdrop-filter:
-                blur(18px);
+                blur(20px);
+
+            box-shadow:
+                0 25px 80px
+                rgba(0,0,0,.25);
         }
 
 
-        .balanceLeft {
+        .balanceInfo {
             display: flex;
 
             align-items: center;
 
-            gap: 18px;
+            gap: 17px;
         }
 
 
         .balanceStar {
-            width: 58px;
-            height: 58px;
+            position: relative;
+
+            width: 62px;
+            height: 62px;
 
             display: flex;
 
             align-items: center;
             justify-content: center;
 
-            border-radius: 18px;
+            border-radius: 20px;
+
+            color: #142116;
 
             background:
                 linear-gradient(
                     145deg,
-                    #e3c477,
-                    #9d7735
+                    #f1d992,
+                    #a67c34
                 );
 
-            color: #172018;
-
-            font-size: 26px;
+            font-size: 27px;
 
             box-shadow:
-                0 10px 30px
-                rgba(215,181,109,.2);
+                0 12px 35px
+                rgba(216,187,114,.22);
+
+            animation:
+                starPulse
+                2.8s
+                ease-in-out
+                infinite;
         }
 
 
-        .balanceText small {
+        @keyframes starPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.07);
+            }
+
+        }
+
+
+        .balanceText small,
+        .balanceNext small {
             display: block;
 
             margin-bottom: 5px;
 
             color:
-                rgba(255,255,255,.45);
+                rgba(255,255,255,.42);
 
             font-size: 9px;
 
@@ -240,188 +409,316 @@
 
 
         .balanceText strong {
-            font-size: 32px;
+            font-size: 34px;
         }
 
 
-        .balanceRight {
+        .balanceNext {
             text-align: right;
         }
 
 
-        .balanceRight small {
-            display: block;
+        .balanceNext strong {
+            color: #d8bb72;
 
-            margin-bottom: 5px;
-
-            color:
-                rgba(255,255,255,.45);
-
-            font-size: 9px;
-
-            letter-spacing: 2px;
+            font-size: 14px;
         }
 
 
-        .balanceRight span {
-            color: #d6b46a;
+        .rewardProgress {
+            height: 5px;
 
-            font-size: 13px;
-            font-weight: 700;
+            width: 100%;
+
+            margin-top: 17px;
+
+            overflow: hidden;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,.08);
+        }
+
+
+        .rewardProgressFill {
+            width: 68%;
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d8bb72,
+                    #f4dda0
+                );
+
+            box-shadow:
+                0 0 15px
+                rgba(216,187,114,.35);
+
+            transition:
+                width .8s
+                cubic-bezier(.22,1,.36,1);
         }
 
 
         /* =====================================================
-           REWARD CARDS
+           MAIN REWARD CARD
         ====================================================== */
 
-        .rewardCards {
+        .mainRewardCard {
+            position: relative;
+
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                .85fr
+                1.15fr;
 
-            gap: 20px;
-        }
+            gap: 35px;
 
+            padding: 35px;
 
-        .rewardCard {
-            position: relative;
-
-            min-height: 390px;
-
-            padding: 32px;
+            margin-bottom: 20px;
 
             overflow: hidden;
 
-            display: flex;
-
-            flex-direction: column;
-
-            border-radius: 28px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.10),
-                    rgba(255,255,255,.035)
-                );
+            border-radius: 30px;
 
             border:
                 1px solid
                 rgba(255,255,255,.12);
 
-            backdrop-filter:
-                blur(20px);
-
-            transition:
-                transform .4s ease,
-                border-color .4s ease,
-                background .4s ease;
-        }
-
-
-        .rewardCard:hover {
-            transform:
-                translateY(-10px);
-
-            border-color:
-                rgba(215,181,109,.45);
-
             background:
                 linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.14),
+                    135deg,
+                    rgba(0,117,74,.35),
                     rgba(255,255,255,.045)
                 );
+
+            backdrop-filter:
+                blur(22px);
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,.28);
         }
 
 
-        .rewardCard::before {
+        .mainRewardCard::after {
             content: "";
 
             position: absolute;
 
-            width: 180px;
-            height: 180px;
+            width: 350px;
+            height: 350px;
+
+            right: -150px;
+            top: -150px;
 
             border-radius: 50%;
 
-            right: -80px;
-            top: -80px;
-
             background:
-                rgba(215,181,109,.08);
+                radial-gradient(
+                    circle,
+                    rgba(216,187,114,.16),
+                    transparent 70%
+                );
 
-            filter: blur(5px);
+            pointer-events: none;
         }
 
 
-        .rewardCard:nth-child(2)::before {
-            background:
-                rgba(0,117,74,.12);
-        }
-
-
-        .rewardCard:nth-child(3)::before {
-            background:
-                rgba(212,175,55,.12);
-        }
-
-
-        .rewardNumber {
+        .rewardHero {
             position: relative;
-            z-index: 2;
+
+            min-height: 300px;
 
             display: flex;
 
             align-items: center;
             justify-content: center;
 
-            width: 70px;
-            height: 70px;
+            overflow: hidden;
 
-            margin-bottom: 30px;
-
-            border-radius: 22px;
+            border-radius: 24px;
 
             background:
-                rgba(215,181,109,.12);
+                radial-gradient(
+                    circle at center,
+                    rgba(216,187,114,.15),
+                    transparent 60%
+                );
+        }
 
-            border:
-                1px solid
-                rgba(215,181,109,.3);
 
-            color: #e2c47b;
+        .bigStar {
+            position: relative;
 
-            font-size: 23px;
+            width: 170px;
+            height: 170px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: #173020;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f3dd9d,
+                    #ae8338
+                );
+
+            font-size: 75px;
+
+            box-shadow:
+                0 0 0 12px
+                rgba(216,187,114,.06),
+
+                0 0 0 30px
+                rgba(216,187,114,.035),
+
+                0 25px 70px
+                rgba(216,187,114,.22);
+
+            animation:
+                bigStarFloat
+                4s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes bigStarFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-12px)
+                    rotate(4deg);
+            }
+
+        }
+
+
+        .rewardHero::before,
+        .rewardHero::after {
+            content: "★";
+
+            position: absolute;
+
+            color:
+                rgba(216,187,114,.25);
+
+            font-size: 22px;
+
+            animation:
+                orbitStar
+                5s
+                linear
+                infinite;
+        }
+
+
+        .rewardHero::before {
+            top: 25%;
+            left: 18%;
+        }
+
+
+        .rewardHero::after {
+            right: 17%;
+            bottom: 24%;
+
+            animation-delay:
+                -2.5s;
+        }
+
+
+        @keyframes orbitStar {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: .2;
+            }
+
+            50% {
+                transform:
+                    translateY(-20px)
+                    rotate(180deg);
+
+                opacity: .8;
+            }
+
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(360deg);
+
+                opacity: .2;
+            }
+
+        }
+
+
+        .rewardContent {
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .rewardContent small {
+            margin-bottom: 12px;
+
+            color: #d8bb72;
+
+            font-size: 10px;
+
             font-weight: 900;
+
+            letter-spacing: 3px;
         }
 
 
-        .rewardNumber small {
-            margin-left: 4px;
-
-            font-size: 13px;
-        }
-
-
-        .rewardCard h3 {
-            position: relative;
-            z-index: 2;
-
+        .rewardContent h3 {
             margin:
-                0 0 12px;
+                0 0 15px;
 
-            font-size: 27px;
+            font-size:
+                clamp(30px,4vw,50px);
 
-            line-height: 1.1;
+            line-height: 1;
+
+            letter-spacing: -2px;
         }
 
 
-        .rewardCard p {
-            position: relative;
-            z-index: 2;
+        .rewardContent p {
+            max-width: 550px;
 
             margin: 0;
 
@@ -430,88 +727,79 @@
 
             font-size: 13px;
 
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
 
-        .rewardCardFooter {
-            position: relative;
-            z-index: 2;
+        .rewardDetails {
+            display: flex;
 
-            margin-top: auto;
+            flex-wrap: wrap;
 
-            padding-top: 30px;
+            gap: 9px;
+
+            margin-top: 25px;
         }
 
 
-        .rewardTag {
-            display: inline-flex;
+        .rewardPill {
+            padding:
+                9px 13px;
 
-            align-items: center;
+            border:
+                1px solid
+                rgba(255,255,255,.1);
 
-            padding: 8px 13px;
-
-            border-radius: 30px;
+            border-radius: 50px;
 
             background:
-                rgba(255,255,255,.07);
+                rgba(255,255,255,.05);
 
             color:
-                rgba(255,255,255,.7);
+                rgba(255,255,255,.72);
 
-            font-size: 9px;
-
-            letter-spacing: 1.5px;
-
-            text-transform: uppercase;
+            font-size: 10px;
         }
 
 
         /* =====================================================
-           WAYS TO EARN
+           MINI HEADER
         ====================================================== */
 
-        .earnSection {
-            margin-top: 70px;
+        .sectionMiniHeader {
+            margin:
+                70px 0 25px;
         }
 
 
-        .earnHeader {
-            display: flex;
+        .sectionMiniHeader small {
+            color: #d8bb72;
 
-            align-items: end;
-            justify-content: space-between;
+            font-size: 9px;
 
-            gap: 30px;
+            letter-spacing: 4px;
 
-            margin-bottom: 25px;
+            font-weight: 900;
         }
 
 
-        .earnHeader small {
-            color: #d6b46a;
+        .sectionMiniHeader h3 {
+            margin:
+                8px 0 0;
 
-            font-size: 10px;
+            font-size: 34px;
 
-            letter-spacing: 3px;
-            font-weight: 800;
+            letter-spacing: -1px;
         }
 
 
-        .earnHeader h3 {
-            margin: 8px 0 0;
+        .sectionMiniHeader p {
+            max-width: 560px;
 
-            font-size: 35px;
-        }
-
-
-        .earnHeader p {
-            max-width: 400px;
-
-            margin: 0;
+            margin-top: 10px;
 
             color:
-                rgba(255,255,255,.52);
+                rgba(255,255,255,.5);
 
             font-size: 12px;
 
@@ -519,37 +807,51 @@
         }
 
 
+        /* =====================================================
+           EARN CARDS
+        ====================================================== */
+
         .earnGrid {
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(3,1fr);
 
-            gap: 15px;
+            gap: 16px;
         }
 
 
         .earnCard {
-            padding: 25px;
+            position: relative;
 
-            border-radius: 22px;
+            padding: 28px;
+
+            min-height: 230px;
+
+            overflow: hidden;
+
+            border-radius: 23px;
 
             background:
                 rgba(255,255,255,.055);
 
             border:
                 1px solid
-                rgba(255,255,255,.08);
+                rgba(255,255,255,.09);
 
             transition:
-                transform .3s ease,
-                background .3s ease;
+                transform .4s ease,
+                border-color .4s ease,
+                background .4s ease;
         }
 
 
         .earnCard:hover {
             transform:
-                translateY(-5px);
+                translateY(-8px);
+
+            border-color:
+                rgba(216,187,114,.3);
 
             background:
                 rgba(255,255,255,.085);
@@ -557,20 +859,26 @@
 
 
         .earnIcon {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
 
             display: flex;
 
             align-items: center;
             justify-content: center;
 
-            margin-bottom: 18px;
+            margin-bottom: 20px;
 
-            border-radius: 15px;
+            border-radius: 16px;
 
             background:
-                rgba(215,181,109,.12);
+                rgba(216,187,114,.1);
+
+            border:
+                1px solid
+                rgba(216,187,114,.2);
+
+            color: #e1c477;
 
             font-size: 21px;
         }
@@ -578,9 +886,22 @@
 
         .earnCard h4 {
             margin:
-                0 0 8px;
+                0 0 9px;
 
             font-size: 16px;
+        }
+
+
+        .earnCard .rate {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #d8bb72;
+
+            font-size: 12px;
+
+            font-weight: 800;
         }
 
 
@@ -597,63 +918,72 @@
 
 
         /* =====================================================
-           SPECIAL BENEFITS
+           PERKS
         ====================================================== */
 
-        .specialRewards {
+        .perkGrid {
             display: grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(2,1fr);
 
-            gap: 18px;
+            gap: 16px;
 
-            margin-top: 18px;
+            margin-top: 16px;
         }
 
 
-        .specialCard {
+        .perkCard {
             position: relative;
 
-            min-height: 190px;
+            min-height: 180px;
 
             padding: 30px;
 
             overflow: hidden;
 
-            border-radius: 25px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0,117,74,.28),
-                    rgba(255,255,255,.045)
-                );
+            border-radius: 24px;
 
             border:
                 1px solid
-                rgba(255,255,255,.1);
-        }
+                rgba(255,255,255,.09);
 
-
-        .specialCard:nth-child(2) {
             background:
                 linear-gradient(
                     135deg,
-                    rgba(215,181,109,.17),
-                    rgba(255,255,255,.045)
+                    rgba(0,117,74,.25),
+                    rgba(255,255,255,.04)
+                );
+
+            transition:
+                transform .4s ease;
+        }
+
+
+        .perkCard:hover {
+            transform:
+                translateY(-7px);
+        }
+
+
+        .perkCard:nth-child(2) {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(216,187,114,.15),
+                    rgba(255,255,255,.04)
                 );
         }
 
 
-        .specialIcon {
-            font-size: 27px;
+        .perkIcon {
+            font-size: 25px;
 
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
 
 
-        .specialCard h4 {
+        .perkCard h4 {
             margin:
                 0 0 8px;
 
@@ -661,28 +991,26 @@
         }
 
 
-        .specialCard p {
-            max-width: 450px;
+        .perkCard p {
+            max-width: 500px;
 
             margin: 0;
 
             color:
-                rgba(255,255,255,.58);
+                rgba(255,255,255,.55);
 
-            font-size: 12px;
+            font-size: 11px;
 
             line-height: 1.7;
         }
 
 
         /* =====================================================
-           CTA
+           REWARDS CTA
         ====================================================== */
 
         .rewardsCTA {
-            margin-top: 55px;
-
-            padding: 38px;
+            position: relative;
 
             display: flex;
 
@@ -691,20 +1019,47 @@
 
             gap: 25px;
 
-            border-radius: 28px;
+            margin-top: 55px;
+
+            padding: 35px;
+
+            overflow: hidden;
+
+            border-radius: 27px;
 
             background:
                 linear-gradient(
-                    90deg,
+                    100deg,
                     #006241,
-                    #087c57
+                    #087b57
                 );
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.2);
+        }
+
+
+        .rewardsCTA::after {
+            content: "★";
+
+            position: absolute;
+
+            right: 30px;
+            bottom: -50px;
+
+            color:
+                rgba(255,255,255,.05);
+
+            font-size: 170px;
+
+            pointer-events: none;
         }
 
 
         .rewardsCTA h3 {
             margin:
-                0 0 8px;
+                0 0 7px;
 
             font-size: 25px;
         }
@@ -720,19 +1075,23 @@
         }
 
 
-        .rewardsCTA button {
+        .starButton {
+            position: relative;
+
+            z-index: 2;
+
             flex-shrink: 0;
 
             padding:
-                15px 27px;
+                15px 25px;
 
-            border: 0;
+            border: none;
 
-            border-radius: 30px;
+            border-radius: 50px;
 
             background: #fff;
 
-            color: #075b3d;
+            color: #075c3e;
 
             font-size: 10px;
 
@@ -748,19 +1107,38 @@
         }
 
 
-        .rewardsCTA button:hover {
+        .starButton:hover {
             transform:
-                translateY(-3px);
+                translateY(-4px);
 
             box-shadow:
-                0 10px 25px
+                0 12px 30px
                 rgba(0,0,0,.2);
         }
 
 
-        /* =====================================================
-           BACK TO TOP
-        ====================================================== */
+        .starAdded {
+            animation:
+                starAdded .6s ease;
+        }
+
+
+        @keyframes starAdded {
+
+            0% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
 
         .rewardsBackTop {
             display: block;
@@ -771,7 +1149,7 @@
                 40px auto 0;
 
             color:
-                rgba(255,255,255,.45);
+                rgba(255,255,255,.42);
 
             text-decoration: none;
 
@@ -779,9 +1157,7 @@
 
             letter-spacing: 3px;
 
-            transition:
-                color .3s ease,
-                transform .3s ease;
+            transition: .3s ease;
         }
 
 
@@ -794,18 +1170,359 @@
 
 
         /* =====================================================
+           STARBUCKS-INSPIRED FOOTER
+        ====================================================== */
+
+        .starbucksFooter {
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                80px 6% 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #02150e 0%,
+                    #063d29 55%,
+                    #01100a 100%
+                );
+
+            color: #fff;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+        }
+
+
+        .footerGlow {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -200px;
+            bottom: -300px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,.12),
+                    transparent 70%
+                );
+
+            filter: blur(30px);
+
+            pointer-events: none;
+        }
+
+
+        .footerContainer {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr
+                1fr
+                1.2fr
+                1fr;
+
+            gap: 55px;
+        }
+
+
+        .footerBrand {
+            max-width: 300px;
+        }
+
+
+        .footerLogo {
+            width: 70px;
+            height: 70px;
+
+            object-fit: contain;
+
+            margin-bottom: 20px;
+
+            filter:
+                drop-shadow(
+                    0 8px 20px
+                    rgba(255,255,255,.12)
+                );
+
+            transition:
+                transform .4s ease;
+        }
+
+
+        .footerLogo:hover {
+            transform:
+                rotate(-5deg)
+                scale(1.08);
+        }
+
+
+        .footerBrand p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,.52);
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        .footerColumn {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+
+        .footerColumn h3 {
+            margin:
+                0 0 22px;
+
+            color: #d8bb72;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+        }
+
+
+        .footerColumn > a {
+            position: relative;
+
+            display: inline-block;
+
+            margin-bottom: 13px;
+
+            color:
+                rgba(255,255,255,.58);
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            transition:
+                color .3s ease,
+                transform .3s ease;
+        }
+
+
+        .footerColumn > a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -4px;
+
+            width: 0;
+            height: 1px;
+
+            background: #d8bb72;
+
+            transition:
+                width .3s ease;
+        }
+
+
+        .footerColumn > a:hover {
+            color: #fff;
+
+            transform:
+                translateX(4px);
+        }
+
+
+        .footerColumn > a:hover::after {
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           SOCIAL
+        ====================================================== */
+
+        .footerSocials {
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .footerSocials a {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin: 0;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.05);
+
+            color: #fff;
+
+            font-size: 15px;
+
+            text-decoration: none;
+
+            transition:
+                transform .3s ease,
+                background .3s ease,
+                border-color .3s ease;
+        }
+
+
+        .footerSocials a::after {
+            display: none;
+        }
+
+
+        .footerSocials a:hover {
+            transform:
+                translateY(-5px);
+
+            background:
+                rgba(216,187,114,.16);
+
+            border-color:
+                rgba(216,187,114,.4);
+
+            color: #d8bb72;
+        }
+
+
+        .footerSocialText {
+            max-width: 220px;
+
+            margin: 0;
+
+            color:
+                rgba(255,255,255,.42);
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           FOOTER DIVIDER
+        ====================================================== */
+
+        .footerDivider {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1250px;
+
+            height: 1px;
+
+            margin:
+                60px auto 25px;
+
+            background:
+                rgba(255,255,255,.09);
+        }
+
+
+        /* =====================================================
+           FOOTER BOTTOM
+        ====================================================== */
+
+        .footerBottom {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .footerCopyright {
+            color:
+                rgba(255,255,255,.35);
+
+            font-size: 9px;
+        }
+
+
+        .footerBottomLinks {
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        .footerBottomLinks a {
+            color:
+                rgba(255,255,255,.38);
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            transition:
+                color .3s ease;
+        }
+
+
+        .footerBottomLinks a:hover {
+            color: #d8bb72;
+        }
+
+
+        /* =====================================================
            RESPONSIVE
         ====================================================== */
 
         @media (max-width: 950px) {
 
-            .rewardCards {
+            .mainRewardCard {
                 grid-template-columns: 1fr;
-            }
-
-
-            .rewardCard {
-                min-height: 300px;
             }
 
 
@@ -814,10 +1531,16 @@
             }
 
 
-            .earnHeader {
-                align-items: flex-start;
+            .rewardHero {
+                min-height: 260px;
+            }
 
-                flex-direction: column;
+
+            .footerContainer {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 45px;
             }
 
         }
@@ -838,12 +1561,12 @@
             }
 
 
-            .balanceRight {
+            .balanceNext {
                 text-align: left;
             }
 
 
-            .specialRewards {
+            .perkGrid {
                 grid-template-columns: 1fr;
             }
 
@@ -856,26 +1579,75 @@
 
 
             .rewardsTitle {
-                letter-spacing: -2px;
+                letter-spacing: -3px;
             }
 
         }
 
 
-        @media (max-width: 450px) {
+        @media (max-width: 600px) {
 
-            .rewardCard {
-                padding: 25px;
+            .starbucksFooter {
+                padding:
+                    60px 25px 25px;
+            }
+
+
+            .footerContainer {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+
+            .footerBrand {
+                max-width: 100%;
+            }
+
+
+            .footerBottom {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .footerBottomLinks {
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .mainRewardCard {
+                padding: 20px;
+            }
+
+
+            .rewardHero {
+                min-height: 220px;
+            }
+
+
+            .bigStar {
+                width: 130px;
+                height: 130px;
+
+                font-size: 55px;
             }
 
 
             .rewardsBalance {
-                padding: 22px;
+                padding: 20px;
             }
 
 
-            .rewardsCTA {
-                padding: 28px;
+            .earnCard {
+                padding: 23px;
             }
 
         }
@@ -908,10 +1680,11 @@
 
     </div>
 
-
     <div class="loadingBrand">
 
-        <span>StarBucks</span>
+        <span>
+            StarBucks
+        </span>
 
         <div class="loadingLine"></div>
 
@@ -941,9 +1714,6 @@
     id="homePage"
 >
 
-
-    <!-- VIDEO 1 -->
-
     <video
         id="backgroundVideo1"
         class="backgroundVideo active"
@@ -952,8 +1722,6 @@
         preload="auto"
     ></video>
 
-
-    <!-- VIDEO 2 -->
 
     <video
         id="backgroundVideo2"
@@ -967,13 +1735,9 @@
     <div class="videoOverlay"></div>
 
 
-
-    <!-- =================================================
-         NAVBAR
-    ================================================== -->
+    <!-- NAVBAR -->
 
     <header class="navbar">
-
 
         <a
             href="#homePage"
@@ -986,7 +1750,6 @@
             >
 
         </a>
-
 
 
         <nav class="navLinks">
@@ -1026,15 +1789,11 @@
     </header>
 
 
-
-    <!-- =================================================
-         HERO
-    ================================================== -->
+    <!-- HERO -->
 
     <div class="hero">
 
         <div class="heroContent">
-
 
             <p class="smallText">
                 WELCOME TO YOUR COFFEE EXPERIENCE
@@ -1075,11 +1834,9 @@
 
             </div>
 
-
         </div>
 
     </div>
-
 
 
     <!-- SCROLL -->
@@ -1097,7 +1854,6 @@
 
     </a>
 
-
 </section>
 
 
@@ -1111,14 +1867,12 @@
     id="summer"
 >
 
-
     <div class="summerBackground"></div>
 
     <div class="summerOverlay"></div>
 
 
     <div class="summerContainer">
-
 
         <div class="summerImageWrapper">
 
@@ -1129,7 +1883,6 @@
             >
 
         </div>
-
 
 
         <div class="summerContent">
@@ -1158,7 +1911,7 @@
                 Starbucks Summer Club turns up
                 electric vibes with brighter bursts,
                 bolder flavors and seasonal
-                surprises.
+                surprises — doubling down on the joy.
 
             </p>
 
@@ -1187,14 +1940,12 @@
     id="summerGallery"
 >
 
-
     <div class="galleryBackground"></div>
 
     <div class="galleryOverlay"></div>
 
 
     <div class="galleryContainer">
-
 
         <div class="galleryHeader">
 
@@ -1213,7 +1964,6 @@
         </div>
 
 
-
         <div class="summerGallery">
 
 
@@ -1228,11 +1978,14 @@
                     alt="Summer Best Bites"
                 >
 
+
                 <div class="cardOverlay"></div>
+
 
                 <div class="cardNumber">
                     01
                 </div>
+
 
                 <div class="cardContent">
 
@@ -1240,19 +1993,20 @@
                         Summer Best Bites
                     </h3>
 
+
                     <p>
-                        Light, crave-able favorites
-                        made for every summer sip.
+                        Light, crave-able, and made to pair
+                        with every summer sip.
                     </p>
 
                 </div>
+
 
                 <div class="cardArrow">
                     ↗
                 </div>
 
             </article>
-
 
 
             <!-- CARD 02 -->
@@ -1266,11 +2020,14 @@
                     alt="Taste Like Summer"
                 >
 
+
                 <div class="cardOverlay"></div>
+
 
                 <div class="cardNumber">
                     02
                 </div>
+
 
                 <div class="cardContent">
 
@@ -1278,19 +2035,20 @@
                         Taste Like Summer
                     </h3>
 
+
                     <p>
-                        Fun and fruity finds
-                        for the season.
+                        Fun, fruity finds to carry you
+                        through the season.
                     </p>
 
                 </div>
+
 
                 <div class="cardArrow">
                     ↗
                 </div>
 
             </article>
-
 
 
             <!-- CARD 03 -->
@@ -1304,11 +2062,14 @@
                     alt="Your Summer In A Cup"
                 >
 
+
                 <div class="cardOverlay"></div>
+
 
                 <div class="cardNumber">
                     03
                 </div>
+
 
                 <div class="cardContent">
 
@@ -1318,12 +2079,14 @@
                         In A Cup
                     </h3>
 
+
                     <p>
-                        Cool and refreshing
-                        favorites for every moment.
+                        Cool, refreshing favorites for
+                        every carefree moment.
                     </p>
 
                 </div>
+
 
                 <div class="cardArrow">
                     ↗
@@ -1331,9 +2094,7 @@
 
             </article>
 
-
         </div>
-
 
 
         <a
@@ -1343,7 +2104,6 @@
             ↑ BACK TO TOP
         </a>
 
-
     </div>
 
 </section>
@@ -1351,7 +2111,7 @@
 
 
 <!-- =====================================================
-     STARBUCKS REWARDS
+     REWARDS
 ====================================================== -->
 
 <section
@@ -1359,57 +2119,61 @@
     id="rewards"
 >
 
+    <div class="rewardsOrb one"></div>
+
+    <div class="rewardsOrb two"></div>
+
+
+    <span class="rewardParticle"></span>
+    <span class="rewardParticle"></span>
+    <span class="rewardParticle"></span>
+    <span class="rewardParticle"></span>
+    <span class="rewardParticle"></span>
+
 
     <div class="rewardsContainer">
 
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
+        <!-- HEADER -->
 
-        <div class="rewardsHeader">
+        <header class="rewardsHeader">
 
             <p class="rewardsEyebrow">
-                STARBUCKS REWARDS
+                STARBUCKS® REWARDS
             </p>
 
 
             <h2 class="rewardsTitle">
 
-                <span>
-                    Your Stars.
-                </span>
-
-                <em>
-                    Your rewards.
-                </em>
+                More moments.
+                <em>More rewards.</em>
 
             </h2>
 
 
-            <p class="rewardsDescription">
+            <p class="rewardsIntro">
 
-                Collect Stars as you enjoy your Starbucks
-                favorites, then choose a reward when you've
-                saved enough. The more Stars you earn,
-                the more choices you unlock.
+                Join Starbucks® Rewards to collect Stars
+                with eligible purchases and redeem them
+                for food and drinks. You can join even
+                without a Starbucks Card.
 
             </p>
 
-        </div>
+        </header>
 
 
 
-        <!-- =================================================
-             BALANCE
-        ================================================== -->
+        <!-- STAR BALANCE -->
 
         <div class="rewardsBalance">
 
+            <div class="balanceInfo">
 
-            <div class="balanceLeft">
-
-                <div class="balanceStar">
+                <div
+                    class="balanceStar"
+                    id="balanceStar"
+                >
                     ★
                 </div>
 
@@ -1417,8 +2181,9 @@
                 <div class="balanceText">
 
                     <small>
-                        CURRENT STAR BALANCE
+                        YOUR STAR BALANCE
                     </small>
+
 
                     <strong id="starBalance">
                         68
@@ -1429,353 +2194,303 @@
             </div>
 
 
-
-            <div class="balanceRight">
+            <div class="balanceNext">
 
                 <small>
                     NEXT REWARD
                 </small>
 
-                <span id="nextRewardText">
+
+                <strong id="nextReward">
                     32 Stars to 100
+                </strong>
+
+
+                <div class="rewardProgress">
+
+                    <div
+                        class="rewardProgressFill"
+                        id="rewardProgressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAIN REWARD -->
+
+        <div class="mainRewardCard">
+
+            <div class="rewardHero">
+
+                <div class="bigStar">
+                    ★
+                </div>
+
+            </div>
+
+
+            <div class="rewardContent">
+
+                <small>
+                    100 STAR REWARD
+                </small>
+
+
+                <h3>
+                    Your next coffee
+                    could be on us.
+                </h3>
+
+
+                <p>
+
+                    Every 100 Stars you collect converts
+                    to a Reward Voucher. Use it for your
+                    choice of an eligible handcrafted
+                    beverage of any size or a food item
+                    from the bakery and cake menu.
+
+                </p>
+
+
+                <div class="rewardDetails">
+
+                    <span class="rewardPill">
+                        Any size handcrafted beverage*
+                    </span>
+
+
+                    <span class="rewardPill">
+                        Bakery & cake choices*
+                    </span>
+
+
+                    <span class="rewardPill">
+                        1 reward per transaction
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HOW TO EARN -->
+
+        <div class="sectionMiniHeader">
+
+            <small>
+                HOW TO EARN STARS
+            </small>
+
+
+            <h3>
+                Collect Stars your way.
+            </h3>
+
+
+            <p>
+
+                Starbucks® Rewards lets you collect Stars
+                through different eligible payment methods
+                and linked online orders.
+
+            </p>
+
+        </div>
+
+
+        <div class="earnGrid">
+
+
+            <!-- STARBUCKS CARD -->
+
+            <article class="earnCard">
+
+                <div class="earnIcon">
+                    ★
+                </div>
+
+
+                <h4>
+                    Starbucks Card
+                </h4>
+
+
+                <span class="rate">
+                    1 ★ for every ₱25
                 </span>
 
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             REWARD OPTIONS
-        ================================================== -->
-
-        <div class="rewardCards">
-
-
-            <!-- 50 STARS -->
-
-            <article class="rewardCard">
-
-
-                <div class="rewardNumber">
-
-                    50
-                    <small>★</small>
-
-                </div>
-
-
-                <h3>
-                    A little extra joy.
-                </h3>
-
 
                 <p>
 
-                    Use 50 Stars for selected drink
-                    customizations or selected bakery
-                    favorites.
+                    Use a registered Starbucks Card
+                    or your registered Card in the
+                    mobile app for eligible purchases
+                    of beverages, food, or merchandise.
 
                 </p>
-
-
-                <div class="rewardCardFooter">
-
-                    <span class="rewardTag">
-                        50 STAR REWARD
-                    </span>
-
-                </div>
 
             </article>
 
 
 
-            <!-- 100 STARS -->
+            <!-- ONLINE -->
 
-            <article class="rewardCard">
+            <article class="earnCard">
 
-
-                <div class="rewardNumber">
-
-                    100
-                    <small>★</small>
-
+                <div class="earnIcon">
+                    🛍
                 </div>
 
 
-                <h3>
-                    Your favorite sip.
-                </h3>
+                <h4>
+                    GrabFood & Lazada
+                </h4>
+
+
+                <span class="rate">
+                    1 ★ for every ₱40
+                </span>
 
 
                 <p>
 
-                    Reach 100 Stars and choose from
-                    eligible handcrafted drinks or
-                    bakery favorites.
+                    Link eligible accounts to your
+                    Starbucks® Rewards account and
+                    collect Stars from eligible Starbucks
+                    orders through supported platforms.
 
                 </p>
-
-
-                <div class="rewardCardFooter">
-
-                    <span class="rewardTag">
-                        100 STAR REWARD
-                    </span>
-
-                </div>
 
             </article>
 
 
 
-            <!-- 150 STARS -->
+            <!-- OTHER PAYMENT -->
 
-            <article class="rewardCard">
+            <article class="earnCard">
 
-
-                <div class="rewardNumber">
-
-                    150
-                    <small>★</small>
-
+                <div class="earnIcon">
+                    ₱
                 </div>
 
 
-                <h3>
-                    Something special.
-                </h3>
+                <h4>
+                    Other Payment Methods
+                </h4>
+
+
+                <span class="rate">
+                    1 ★ for every ₱50
+                </span>
 
 
                 <p>
 
-                    Save 150 Stars for an eligible
-                    pasta, sandwich, or cake selection.
+                    Pay with eligible cash, credit/debit
+                    cards, select e-wallets, Starbucks
+                    gift certificates, or Starbucks e-Gift.
 
                 </p>
 
+            </article>
 
-                <div class="rewardCardFooter">
+        </div>
 
-                    <span class="rewardTag">
-                        150 STAR REWARD
-                    </span>
 
+
+        <!-- PERKS -->
+
+        <div class="sectionMiniHeader">
+
+            <small>
+                EXCLUSIVE PERKS
+            </small>
+
+
+            <h3>
+                Keep the rewards coming.
+            </h3>
+
+        </div>
+
+
+        <div class="perkGrid">
+
+
+            <article class="perkCard">
+
+                <div class="perkIcon">
+                    🎂
                 </div>
+
+
+                <h4>
+                    Birthday Treat
+                </h4>
+
+
+                <p>
+
+                    Celebrate your birthday with an
+                    eligible Starbucks® Rewards birthday
+                    treat. Terms and eligibility apply.
+
+                </p>
 
             </article>
 
 
-        </div>
 
+            <article class="perkCard">
 
-
-        <!-- =================================================
-             WAYS TO EARN
-        ================================================== -->
-
-        <div class="earnSection">
-
-
-            <div class="earnHeader">
-
-
-                <div>
-
-                    <small>
-                        HOW TO EARN
-                    </small>
-
-                    <h3>
-                        Collect Stars.
-                    </h3>
-
+                <div class="perkIcon">
+                    ✨
                 </div>
+
+
+                <h4>
+                    Double Star Days
+                </h4>
 
 
                 <p>
 
-                    Your everyday Starbucks moments
-                    can help you build your Star balance.
+                    Watch for special Double Star Days
+                    where eligible purchases can help
+                    you collect Stars faster.
 
                 </p>
 
-
-            </div>
-
-
-
-            <div class="earnGrid">
-
-
-                <!-- CARD -->
-
-                <article class="earnCard">
-
-
-                    <div class="earnIcon">
-                        ★
-                    </div>
-
-
-                    <h4>
-                        Pay with Starbucks Card
-                    </h4>
-
-
-                    <p>
-
-                        Earn Stars based on your eligible
-                        purchase amount when using your
-                        registered Starbucks Card.
-
-                    </p>
-
-                </article>
-
-
-
-                <!-- CARD -->
-
-                <article class="earnCard">
-
-
-                    <div class="earnIcon">
-                        🛍
-                    </div>
-
-
-                    <h4>
-                        Online Orders
-                    </h4>
-
-
-                    <p>
-
-                        Eligible Starbucks purchases
-                        through linked delivery platforms
-                        can also add Stars to your account.
-
-                    </p>
-
-                </article>
-
-
-
-                <!-- CARD -->
-
-                <article class="earnCard">
-
-
-                    <div class="earnIcon">
-                        📱
-                    </div>
-
-
-                    <h4>
-                        Keep Your Account Active
-                    </h4>
-
-
-                    <p>
-
-                        Check your Starbucks account regularly
-                        to keep track of Stars, rewards,
-                        and available offers.
-
-                    </p>
-
-                </article>
-
-
-            </div>
-
-
-
-            <!-- =================================================
-                 SPECIAL BENEFITS
-            ================================================== -->
-
-            <div class="specialRewards">
-
-
-                <article class="specialCard">
-
-
-                    <div class="specialIcon">
-                        🎂
-                    </div>
-
-
-                    <h4>
-                        Birthday Treat
-                    </h4>
-
-
-                    <p>
-
-                        Celebrate your birthday with a
-                        special Starbucks reward available
-                        to eligible Rewards members.
-
-                    </p>
-
-                </article>
-
-
-
-                <article class="specialCard">
-
-
-                    <div class="specialIcon">
-                        ✨
-                    </div>
-
-
-                    <h4>
-                        Double Star Days
-                    </h4>
-
-
-                    <p>
-
-                        Watch for special promotional days
-                        where eligible purchases can earn
-                        extra Stars.
-
-                    </p>
-
-                </article>
-
-
-            </div>
-
+            </article>
 
         </div>
 
 
 
-        <!-- =================================================
-             CTA
-        ================================================== -->
+        <!-- CTA -->
 
         <div class="rewardsCTA">
-
 
             <div>
 
                 <h3>
-                    Ready to collect more Stars?
+                    Ready to collect Stars?
                 </h3>
 
 
                 <p>
 
-                    Enjoy your favorites and make every
-                    coffee moment count.
+                    Enjoy your favorites and make
+                    every coffee moment count.
 
                 </p>
 
@@ -1784,19 +2499,14 @@
 
             <button
                 type="button"
+                class="starButton"
                 id="earnStarButton"
             >
-                ADD A STAR ★
+                DEMO: ADD 1 STAR ★
             </button>
-
 
         </div>
 
-
-
-        <!-- =================================================
-             BACK TO TOP
-        ================================================== -->
 
         <a
             href="#homePage"
@@ -1805,10 +2515,212 @@
             ↑ BACK TO TOP
         </a>
 
-
     </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="starbucksFooter">
+
+    <div class="footerGlow"></div>
+
+
+    <div class="footerContainer">
+
+
+        <!-- BRAND -->
+
+        <div class="footerBrand">
+
+            <img
+                src="images/1.png"
+                alt="StarBucks Logo"
+                class="footerLogo"
+            >
+
+
+            <p>
+
+                Good coffee.
+                Good moments.
+
+                <br><br>
+
+                Made for every coffee experience.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ABOUT -->
+
+        <div class="footerColumn">
+
+            <h3>
+                ABOUT US
+            </h3>
+
+
+            <a href="#homePage">
+                Our Company
+            </a>
+
+
+            <a href="#summer">
+                Our Coffee
+            </a>
+
+
+            <a href="#rewards">
+                Starbucks Rewards
+            </a>
+
+
+            <a href="#">
+                Careers
+            </a>
+
+        </div>
+
+
+
+        <!-- CUSTOMER -->
+
+        <div class="footerColumn">
+
+            <h3>
+                CUSTOMER SERVICE
+            </h3>
+
+
+            <a href="#">
+                Contact Us
+            </a>
+
+
+            <a href="#">
+                Frequently Asked Questions
+            </a>
+
+
+            <a href="#">
+                Privacy Notice
+            </a>
+
+
+            <a href="#">
+                Terms of Use
+            </a>
+
+        </div>
+
+
+
+        <!-- SOCIAL -->
+
+        <div class="footerColumn">
+
+            <h3>
+                FOLLOW US
+            </h3>
+
+
+            <div class="footerSocials">
+
+                <a
+                    href="#"
+                    aria-label="Facebook"
+                >
+                    f
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="Instagram"
+                >
+                    ◎
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="TikTok"
+                >
+                    ♪
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="YouTube"
+                >
+                    ▶
+                </a>
+
+            </div>
+
+
+            <p class="footerSocialText">
+
+                Follow us for coffee,
+                stories, and seasonal moments.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DIVIDER -->
+
+    <div class="footerDivider"></div>
+
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footerBottom">
+
+
+        <div class="footerCopyright">
+
+            © 2026 StarBucks.
+            All rights reserved.
+
+        </div>
+
+
+        <div class="footerBottomLinks">
+
+            <a href="#">
+                Privacy Notice
+            </a>
+
+
+            <a href="#">
+                Terms of Use
+            </a>
+
+
+            <a href="#">
+                Accessibility
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
 
 
 </main>
@@ -1823,6 +2735,7 @@
     id="backgroundMusic"
     loop
     preload="auto"
+    controls
     crossorigin="anonymous"
 >
 
@@ -1830,6 +2743,9 @@
         src="./music/1.mp3"
         type="audio/mpeg"
     >
+
+    Your browser does not support
+    the audio element.
 
 </audio>
 
@@ -1862,7 +2778,7 @@
 
 
 <!-- =====================================================
-     EXISTING JAVASCRIPT
+     EXISTING JS
 ====================================================== -->
 
 <script src="script.js"></script>
@@ -1880,58 +2796,47 @@ document.addEventListener(
     function () {
 
 
+        /*
+         * DEMO REWARDS SYSTEM
+         *
+         * This is only for the visual presentation
+         * of the school/project website.
+         *
+         * It is NOT connected to a real Starbucks account.
+         */
+
+
+        let stars = 68;
+
+
         const starBalance =
             document.getElementById(
                 "starBalance"
             );
 
 
-        const nextRewardText =
+        const nextReward =
             document.getElementById(
-                "nextRewardText"
+                "nextReward"
             );
 
 
-        const earnStarButton =
+        const progressFill =
+            document.getElementById(
+                "rewardProgressFill"
+            );
+
+
+        const addStarButton =
             document.getElementById(
                 "earnStarButton"
             );
 
 
-        let stars = 68;
-
-
-        const rewardLevels = [
-            50,
-            100,
-            150
-        ];
-
-
-
-        function getNextReward() {
-
-            for (
-                let i = 0;
-                i < rewardLevels.length;
-                i++
-            ) {
-
-                if (
-                    stars <
-                    rewardLevels[i]
-                ) {
-
-                    return rewardLevels[i];
-
-                }
-
-            }
-
-
-            return null;
-
-        }
+        const balanceStar =
+            document.getElementById(
+                "balanceStar"
+            );
 
 
 
@@ -1947,65 +2852,75 @@ document.addEventListener(
                 stars;
 
 
-
-            const nextReward =
-                getNextReward();
-
+            const next =
+                100;
 
 
-            if (nextReward) {
+            const remaining =
+                Math.max(
+                    next - stars,
+                    0
+                );
 
-                const remaining =
-                    nextReward - stars;
 
+            if (remaining === 0) {
 
-                nextRewardText.textContent =
+                nextReward.textContent =
+                    "Reward unlocked!";
+
+            } else {
+
+                nextReward.textContent =
                     remaining +
-                    " Stars to " +
-                    nextReward;
-
-            }
-
-            else {
-
-                nextRewardText.textContent =
-                    "All reward levels reached";
+                    " Stars to 100";
 
             }
 
 
+            const progress =
+                Math.min(
+                    stars / next * 100,
+                    100
+                );
 
-            if (stars >= 150) {
 
-                earnStarButton.textContent =
-                    "150+ STARS ★";
-
-            }
-
-            else {
-
-                earnStarButton.textContent =
-                    "ADD A STAR ★";
-
-            }
+            progressFill.style.width =
+                progress + "%";
 
         }
 
 
 
-        /* =================================================
-           ADD STAR
-        ================================================== */
+        if (addStarButton) {
 
-        if (earnStarButton) {
-
-            earnStarButton.addEventListener(
+            addStarButton.addEventListener(
                 "click",
                 function () {
 
-                    stars++;
+
+                    stars += 1;
+
+
+                    if (stars > 100) {
+                        stars = 0;
+                    }
+
 
                     updateRewards();
+
+
+                    balanceStar.classList.remove(
+                        "starAdded"
+                    );
+
+
+                    void balanceStar.offsetWidth;
+
+
+                    balanceStar.classList.add(
+                        "starAdded"
+                    );
+
 
                 }
             );
@@ -2013,11 +2928,68 @@ document.addEventListener(
         }
 
 
-
         updateRewards();
 
     }
+);
 
+</script>
+
+
+
+<!-- =====================================================
+     SMOOTH SCROLL
+====================================================== -->
+
+<script>
+
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach(
+    function (link) {
+
+
+        link.addEventListener(
+            "click",
+            function (event) {
+
+
+                const targetId =
+                    this.getAttribute("href");
+
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
+
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (!target) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+
+            }
+        );
+
+    }
 );
 
 </script>
